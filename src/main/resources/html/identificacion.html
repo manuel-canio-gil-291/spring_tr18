@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/identificacion.css">
+    <title>Identificaci&oacute;n</title>
+</head>
+<body>
+    <div class="b-divider"></div>
+    <div class="modal modal-sheet position-static d-block py-5" tabindex="-1" role="dialog" id="identification">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content rounded-4 shadow">
+            <div class="modal-header border-bottom-0">
+              <h1 class="modal-title fs-5">Bienvenido</h1>
+            </div>
+            <div class="modal-header py-0">
+              <p>Identif&iacute;cate</p>
+            </div>
+            <div class="modal-body py-3">
+                <div class="inputs">
+                    <form id="form" method="post" action="#" th:action="@{/index}" th:object="${teacher}">
+                        <div class="form-floating mb-3">
+                            <input type="text" th:field="*{username}" class="form-control rounded-3" id="username" placeholder="username">
+                            <label for="username" class="sr-only">
+                                Usuario
+                            </label>
+                        </div>
+                        <div class="modal-footer flex-column border-top-0">
+                            <input type="submit" class="btn btn-lg btn-primary w-100 mx-0 mb-2" id="submit" value="Entrar"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
