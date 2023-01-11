@@ -1,10 +1,13 @@
 package es.iesjandula.spring_tr18.models;
 
+import java.util.Date;
+
 public class ReservaCarritoTablets {
     private Integer id;
     private Profesor idProfesor;
     private CarritoTablets idCarritoTablets;
     private String ubicacionPrestamo;
+    private Date fecha;
 
     public ReservaCarritoTablets()
     {
@@ -41,6 +44,14 @@ public class ReservaCarritoTablets {
 
     public void setUbicacionPrestamo(String ubicacion_prestamo) {
         this.ubicacionPrestamo = ubicacion_prestamo;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     
