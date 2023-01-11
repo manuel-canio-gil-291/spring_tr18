@@ -1,11 +1,11 @@
 package es.iesjandula.spring_tr18.models;
 
-public class Aula 
+public class AulaInformatica 
 {
     private Integer id;
-    private Integer numero_aula, planta;
+    private Integer numeroAula, planta;
     
-    public Aula()
+    public AulaInformatica()
     {
 
     }
@@ -18,12 +18,12 @@ public class Aula
         this.id = id;
     }
 
-    public Integer getNumero_aula() {
-        return numero_aula;
+    public Integer getNumeroAula() {
+        return numeroAula;
     }
 
-    public void setNumero_aula(Integer numero_aula) {
-        this.numero_aula = numero_aula;
+    public void setNumeroAula(Integer numero_aula) {
+        this.numeroAula = numero_aula;
     }
 
     public Integer getPlanta() {

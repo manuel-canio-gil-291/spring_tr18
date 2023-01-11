@@ -1,11 +1,11 @@
 package es.iesjandula.spring_tr18.models;
 
-public class Carrito_tablets 
+public class CarritoTablets 
 {
     private Integer id;
-    private Integer numero_tablets, planta;
+    private Integer numeroTablets, planta;
 
-    public Carrito_tablets()
+    public CarritoTablets()
     {
 
     }
@@ -18,12 +18,12 @@ public class Carrito_tablets
         this.id = id;
     }
 
-    public Integer getNumero_tablets() {
-        return numero_tablets;
+    public Integer getNumeroTablets() {
+        return numeroTablets;
     }
 
-    public void setNumero_tablets(Integer numero_tablets) {
-        this.numero_tablets = numero_tablets;
+    public void setNumeroTablets(Integer numero_tablets) {
+        this.numeroTablets = numero_tablets;
     }
 
     public Integer getPlanta() {
