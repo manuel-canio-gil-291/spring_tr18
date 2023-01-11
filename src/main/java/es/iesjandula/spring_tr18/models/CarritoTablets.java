@@ -1,9 +1,21 @@
 package es.iesjandula.spring_tr18.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "carrito_tablets")
 public class CarritoTablets 
 {
+    @Id
+    @Column(length = 10)
     private Integer id;
-    private Integer numeroTablets, planta;
+    @Column(length = 3)
+    private Integer numeroTablets;
+    @Column(length = 1)
+    private Integer planta;
 
     public CarritoTablets()
     {

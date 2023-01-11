@@ -22,9 +22,13 @@
                 <div class="inputs">
                     <form id="form" method="post" action="#" th:action="@{/index}" th:object="${teacher}">
                         <div class="form-floating mb-3">
-                            <input type="text" th:field="*{username}" class="form-control rounded-3" id="username" placeholder="username">
-                            <label for="username" class="sr-only">
-                                Usuario
+                            <input type="text" th:field="*{name}" class="form-control rounded-3" id="name">
+                            <label for="name" class="sr-only">
+                                Nombre
+                            </label>
+                            <input type="text" th:field="*{surname}" class="form-control rounded-3" id="surname">
+                            <label for="surname" class="sr-only">
+                                Apellidos
                             </label>
                         </div>
                         <div class="modal-footer flex-column border-top-0">
