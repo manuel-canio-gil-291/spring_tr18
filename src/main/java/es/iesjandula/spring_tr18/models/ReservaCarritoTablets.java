@@ -2,12 +2,32 @@ package es.iesjandula.spring_tr18.models;
 
 import java.util.Date;
 
-public class ReservaCarritoTablets {
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "reserva_carrito_tablets")
+public class ReservaCarritoTablets 
+{
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Profesor idProfesor;
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private CarritoTablets idCarritoTablets;
+    @Column(name = "ubicacion_prestamo", length = 50)
     private String ubicacionPrestamo;
-    private Date fecha;
+    @Column(nullable = false)
+    private Date date;
 
     public ReservaCarritoTablets()
     {
@@ -46,13 +66,12 @@ public class ReservaCarritoTablets {
         this.ubicacionPrestamo = ubicacion_prestamo;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getDate() {
+        return date;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    
 }
