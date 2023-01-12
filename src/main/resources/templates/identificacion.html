@@ -22,12 +22,12 @@
                 <div class="inputs">
                     <form id="form" method="post" action="#" th:action="@{/index}" th:object="${teacher}">
                         <div class="form-floating mb-3">
-                            <input type="text" th:field="*{name}" class="form-control rounded-3" id="name">
+                            <input type="text" th:field="*{nombre}" class="form-control rounded-3" id="name">
                             <label for="name" class="sr-only">
                                 Nombre
                             </label>
-                            <input type="text" th:field="*{surname}" class="form-control rounded-3" id="surname">
-                            <label for="surname" class="sr-only">
+                            <input type="text" th:field="*{apellidos}" class="form-control rounded-3" id="surname">
+                            <label for="surname" class="sr-only mt-5">
                                 Apellidos
                             </label>
                         </div>

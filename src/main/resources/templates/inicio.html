@@ -9,7 +9,6 @@
 </head>
 <body>
     <h1 class="text-center pt-2 pb-2 bg-info text-wrap">Aula de informática</h1>
-    <p class="text-end">Sesi&oacute;n iniciada como: <span th:text="${teacher.name}"></span> <span th:text="${teacher.surname}"></span></p>
     <br>
     <h3 class="text-left ms-3">Reservas aulas</h3>
     <table class="table table-striped">
@@ -30,7 +29,7 @@
             </tr>
         </tbody>
     </table>
-    <button class="btn btn-lg btn-primary" onclick="reservasAulas()">M&aacute;s detalles</button>
+    <button class="btn btn-lg btn-primary" disabled>M&aacute;s detalles</button>
     <hr>
     <h3 class="text-left ms-3">Reserva de carritos PC</h3>
     <table class="table table-striped">
@@ -57,7 +56,7 @@
             </tr>
         </tbody>
     </table>
-    <button class="btn btn-lg btn-primary" onclick="reservasCarritosPC()">M&aacute;s detalles</button>
+    <button class="btn btn-lg btn-primary" disabled>M&aacute;s detalles</button>
     <hr>
     <h3 class="text-left ms-3">Reserva de carritos tablets</h3>
     <table class="table table-striped">
@@ -84,16 +83,7 @@
             </tr>
         </tbody>
     </table>
-    <button class="btn btn-lg btn-primary" onclick="reservasCarritosTablet()">M&aacute;s detalles</button>
-    <hr>
-    <div class="container">
-        <div class="row">
-            <div class="col text-center">
-                <button class="btn btn-danger">Cerrar sesi&oacute;n</button>
-            </div>
-        </div>
-    </div>
+    <button class="btn btn-lg btn-primary" disabled>M&aacute;s detalles</button>
     <hr>
 </body>
-<script src="../javascript/leerDatosReservas.js"></script>
 </html>
