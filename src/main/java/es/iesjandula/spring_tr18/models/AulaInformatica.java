@@ -14,7 +14,7 @@ public class AulaInformatica
     private Integer id;
     @Column(length = 2)
     private Integer numeroAula;
-    @Column(length = 1)
+    @Column(length = 1, nullable = false)
     private Integer planta;
     
     public AulaInformatica()

@@ -2,10 +2,28 @@ package es.iesjandula.spring_tr18.models;
 
 import java.util.Date;
 
+//import jakarta.persistence.EmbeddedId;
+//import jakarta.persistence.Entity;
+//import jakarta.persistence.JoinColumn;
+//import jakarta.persistence.ManyToOne;
+//import jakarta.persistence.MapsId;
+//import jakarta.persistence.Table;
+
+//@Entity
+//@Table(name = "reserva_aula")
 public class ReservaAula 
 {
+    //@EmbeddedId
+    private ReservaAulaId reservaAulaId;
+    //@ManyToOne
+    //@JoinColumn(name = "id_profesor")
+    //@MapsId("idProfesor")
     private Profesor idProfesor;
+    //@ManyToOne
+    //@JoinColumn(name = "id_aula")
+    //@MapsId("idAula")
     private AulaInformatica idAula;
+    //@MapsId("fecha")
     private Date fecha;
 
     public ReservaAula()

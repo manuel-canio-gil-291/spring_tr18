@@ -11,9 +11,9 @@ public class CarritoPCs {
     @Id
     @Column(length = 10)
     private Integer id;
-    @Column(length = 3)
+    @Column(length = 3, nullable = false)
     private Integer numeroPcs;
-    @Column(length = 1)
+    @Column(length = 1, nullable = false)
     private Integer planta;
     @Column(length = 50, nullable = false)
     private String sistemaOperativo;

@@ -14,7 +14,7 @@ public class CarritoTablets
     private Integer id;
     @Column(length = 3)
     private Integer numeroTablets;
-    @Column(length = 1)
+    @Column(length = 1, nullable = false)
     private Integer planta;
 
     public CarritoTablets()
