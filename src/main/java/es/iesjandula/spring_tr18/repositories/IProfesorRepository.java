@@ -1,14 +1,12 @@
 package es.iesjandula.spring_tr18.repositories;
 
-import java.util.List;
-
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import es.iesjandula.spring_tr18.models.Profesor;
 
-public interface IProfesorRepository
+@Repository
+public interface IProfesorRepository extends JpaRepository<Profesor, Long>
 {
-    @Query("SELECT * FROM profesores p WHERE p.nombre LIKE :nombre")
-    public List<Profesor> buscarPorNombre(@Param("nombre") String nombre);
+    
 }

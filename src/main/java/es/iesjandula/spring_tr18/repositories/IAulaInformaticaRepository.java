@@ -1,14 +1,12 @@
 package es.iesjandula.spring_tr18.repositories;
 
-import java.util.List;
-
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import es.iesjandula.spring_tr18.models.AulaInformatica;
 
-public interface IAulaInformaticaRepository
+@Repository
+public interface IAulaInformaticaRepository extends JpaRepository<AulaInformatica, Long>
 {
-    @Query("SELECT * FROM aulas_informatica ai WHERE ai.numero_aula = :numero_aula")
-    public List<AulaInformatica> buscarAulaInformaticaPorPlanta(@Param("numero_aula") Integer numeroAula);    
+    
 }
