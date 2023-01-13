@@ -2,16 +2,18 @@ package es.iesjandula.spring_tr18.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "aula_informatica")
+@Table(name = "aulas_informatica")
 public class AulaInformatica 
 {
     @Id
-    @Column(length = 10)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(length = 2)
     private Integer numeroAula;
     @Column(length = 1, nullable = false)
@@ -22,11 +24,17 @@ public class AulaInformatica
 
     }
 
-    public Integer getId() {
+    public AulaInformatica(Long id, Integer numeroAula, Integer planta) {
+        this.id = id;
+        this.numeroAula = numeroAula;
+        this.planta = planta;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

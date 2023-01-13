@@ -13,13 +13,13 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "reserva_carrito_tablets")
+@Table(name = "reservas_carritos_tablets")
 public class ReservaCarritoTablets 
 {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Profesor idProfesor;
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -34,11 +34,20 @@ public class ReservaCarritoTablets
 
     }
 
-    public Integer getId() {
+    public ReservaCarritoTablets(Long id, Profesor idProfesor, CarritoTablets idCarritoTablets,
+            String ubicacionPrestamo, Date date) {
+        this.id = id;
+        this.idProfesor = idProfesor;
+        this.idCarritoTablets = idCarritoTablets;
+        this.ubicacionPrestamo = ubicacionPrestamo;
+        this.date = date;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -15,7 +15,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "reserva_aula")
+@Table(name = "reservas_aulas")
 public class ReservaAula 
 {   
     //@JoinColumn(name = "id_profesor")
