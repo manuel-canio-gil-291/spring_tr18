@@ -36,6 +36,12 @@ public class ReservaAula
 
     }
 
+    public ReservaAula(Profesor idProfesor, AulaInformatica idAula, Date fecha) {
+        this.idProfesor = idProfesor;
+        this.idAula = idAula;
+        this.fecha = fecha;
+    }
+
     public Profesor getIdProfesor() {
         return idProfesor;
     }
