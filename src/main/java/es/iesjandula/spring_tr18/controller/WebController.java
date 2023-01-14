@@ -1,3 +1,10 @@
+/**
+ * ------------------------------------------------------
+ * | WARNING!!!                                         |
+ * | This is a stable version of the code application.  |
+ * | Please, don't modify!                              |
+ * ------------------------------------------------------
+ */
 package es.iesjandula.spring_tr18.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +22,34 @@ import es.iesjandula.spring_tr18.models.ReservaCarritoTablets;
 import es.iesjandula.spring_tr18.repositories.IReservaAulaRepository;
 import es.iesjandula.spring_tr18.repositories.IReservaCarritoPCsRepository;
 import es.iesjandula.spring_tr18.repositories.IReservaCarritoTabletsRepository;
-
+/**
+ * This is a controller which you can reserve a classroom, a tablet trolley and/or a PC trolley
+ * @author Manuel Canio Gil
+ * @version 1.0.0
+ */
 @Controller
 public class WebController 
 {
+    /**
+     * Repository of the table "Reserve trolley tablet"
+     */
     @Autowired
     public IReservaCarritoTabletsRepository reservaCarritoTabletsRepository;
-
+    /**
+     * Repository of the table "Reserve PC tablet"
+     */
     @Autowired
     public IReservaCarritoPCsRepository reservaCarritoPCsRepository;
-
+    /**
+     * Repository of the table "Reserve trolley tablet"
+     */
     @Autowired
     public IReservaAulaRepository reservaAulaRepository;
-
+    /**
+     * This URL is the main page of the reserves of the classrooms and trolleys
+     * @param model
+     * @return the HTML main page
+     */
     @GetMapping("/reservas")
     public String paginaInicioReservas(Model model)
     {
@@ -37,7 +59,11 @@ public class WebController
 
         return "reservas_inicio";
     }
-
+    /**
+     * This URL is a form which you can reserve a classroom that it exists in the database
+     * @param model
+     * @return the HTML web page of reserve classroom form 
+     */
     @GetMapping("/reservas/formulario_nueva_reserva_aula")
     public String formularioNuevaReservaAula(Model model)
     {
@@ -47,7 +73,11 @@ public class WebController
 
         return "nueva_reserva_aula";
     }
-
+    /**
+     * This URL is a form which you can reserve a PC trolley that it exists in the database 
+     * @param model
+     * @return the HTML web page of reserve PC trolley form 
+     */
     @GetMapping("/reservas/formulario_nueva_reserva_carrito_pcs")
     public String formularioNuevaReservaCarritoPCs(Model model)
     {
@@ -57,7 +87,11 @@ public class WebController
 
         return "nueva_reserva_carrito_pcs";
     }
-
+    /**
+     * This URL is a form which you can reserve a tablet trolley that it exists in the database 
+     * @param model
+     * @return the HTML web page of reserve tablet trolley form 
+     */
     @GetMapping("/reservas/formulario_nueva_reserva_carrito_tablets")
     public String formularioNuevaReservaCarritoTablets(Model model)
     {
@@ -67,7 +101,11 @@ public class WebController
 
         return "nueva_reserva_carrito_tablets";
     }
-
+    /**
+     * This URL save the reserve classroom in the database
+     * @param model
+     * @return redirection of the main page
+     */
     @PostMapping("/reservas/guardar_reserva_aula")
     public String guardarReservaAula(@ModelAttribute("reserva_aula") ReservaAula reservaAula)
     {
@@ -75,7 +113,11 @@ public class WebController
 
         return "redirect:/reservas";
     }
-
+    /**
+     * This URL save the reserve PC trolley in the database
+     * @param model
+     * @return redirection of the main page
+     */
     @PostMapping("/reservas/guardar_reserva_carrito_pcs")
     public String guardarReservaCarritoPCs(@ModelAttribute("reserva_carrito_pcs") ReservaCarritoPCs reservaCarritoPCs)
     {
@@ -83,7 +125,11 @@ public class WebController
 
         return "redirect:/reservas";
     }
-
+    /**
+     * This URL save the reserve tablet trolley in the database
+     * @param model
+     * @return redirection of the main page
+     */
     @PostMapping("/reservas/guardar_reserva_carrito_tablets")
     public String guardarReservaCarritoTablets(@ModelAttribute("reserva_carrito_tablets") ReservaCarritoTablets reservaCarritoTablets)
     {
@@ -91,7 +137,11 @@ public class WebController
 
         return "redirect:/reservas";
     }
-
+    /**
+     * This URL is a form which you can update the reserve classroom passing the date
+     * @param model
+     * @return the HTML web page of reserve classroom form with data
+     */
     @GetMapping("/reservas/formulario_actualizar_reserva_aula/{fecha}")
     public String formularioActualizarReservaAula(@PathVariable("fecha") String fecha, Model model)
     {
@@ -101,7 +151,11 @@ public class WebController
 
         return "actualizar_reserva_aula";
     }
-
+    /**
+     * This URL is a form which you can update the reserve tablet trolley passing the id
+     * @param model
+     * @return the HTML web page of reserve tablet trolley form with data
+     */
     @GetMapping("/reservas/formulario_actualizar_reserva_carrito_tablets/{id}")
     public String formularioActualizarReservaCarritoTablets(@PathVariable("id") Long id, Model model)
     {
@@ -111,7 +165,11 @@ public class WebController
 
         return "actualizar_reserva_carrito_tablets";
     }
-
+    /**
+     * This URL is a form which you can update the reserve classroom passing the id
+     * @param model
+     * @return the HTML web page of reserve classroom form with data
+     */
     @GetMapping("/reservas/formulario_actualizar_reserva_carrito_pcs/{id}")
     public String formularioActualizarReservaCarritoPCs(@PathVariable("id") Long id, Model model)
     {
@@ -121,7 +179,11 @@ public class WebController
 
         return "actualizar_reserva_carrito_pcs";
     }
-
+    /**
+     * This URL update the reserve classroom in the database passing the date
+     * @param model
+     * @return redirection of the main page
+     */
     @PostMapping("/reservas/actualizar_reserva_aula/{fecha}")
     public String actualizarReservaAula(@PathVariable("fecha") String fecha, ReservaAula reservaAula,
     BindingResult result, Model model)
@@ -137,7 +199,11 @@ public class WebController
 
         return "redirect:/reservas";
     }
-
+    /**
+     * This URL update the reserve tablet trolley in the database passing the id
+     * @param model
+     * @return redirection of the main page
+     */
     @PostMapping("/reservas/actualizar_reserva_carrito_tablets/{id}")
     public String actualizarReservaCarritoTablets(@PathVariable("id") Long id, ReservaCarritoTablets reservaCarritoTablets,
     BindingResult result, Model model)
@@ -153,7 +219,11 @@ public class WebController
 
         return "redirect:/reservas";
     }
-
+    /**
+     * This URL update the reserve PC trolley in the database passing the id
+     * @param model
+     * @return redirection of the main page
+     */
     @PostMapping("/reservas/actualizar_reserva_carrito_pcs/{id}")
     public String actualizarReservaCarritoPCs(@PathVariable("id") Long id, ReservaCarritoPCs reservaCarritoPCs,
     BindingResult result, Model model)
@@ -169,7 +239,11 @@ public class WebController
 
         return "redirect:/reservas";
     }
-
+    /**
+     * This URL delete the reserve classroom in the database passing the date
+     * @param model
+     * @return redirection of the main page
+     */
     @GetMapping("/reservas/anular_reserva_aula/{fecha}")
     public String anularReservaAula(@PathVariable("fecha") String fecha, Model model)
     {
@@ -179,7 +253,11 @@ public class WebController
 
         return "redirect:/reservas";
     }
-
+    /**
+     * This URL delete the reserve tablet trolley in the database passing the id
+     * @param model
+     * @return redirection of the main page
+     */
     @GetMapping("/reservas/anular_reserva_carrito_tablets/{id}")
     public String anularReservaCarritoTablets(@PathVariable("id") Long id, Model model)
     {
@@ -189,7 +267,11 @@ public class WebController
 
         return "redirect:/reservas";
     }
-
+    /**
+     * This URL delete the reserve PC trolley in the database passing the id
+     * @param model
+     * @return redirection of the main page
+     */
     @GetMapping("/reservas/anular_reserva_carrito_pcs/{id}")
     public String anularReservaCarritoPCs(@PathVariable("id") Long id, Model model)
     {
