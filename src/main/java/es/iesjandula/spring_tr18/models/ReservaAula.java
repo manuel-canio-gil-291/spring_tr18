@@ -1,7 +1,5 @@
 package es.iesjandula.spring_tr18.models;
 
-import java.util.Date;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 //import jakarta.persistence.EmbeddedId;
@@ -29,14 +27,14 @@ public class ReservaAula
     //@MapsId("fecha")
     @Id
     @Column(name = "fecha", nullable = false)
-    private Date fecha;
+    private String fecha;
 
     public ReservaAula()
     {
 
     }
 
-    public ReservaAula(Profesor idProfesor, AulaInformatica idAula, Date fecha) {
+    public ReservaAula(Profesor idProfesor, AulaInformatica idAula, String fecha) {
         this.idProfesor = idProfesor;
         this.idAula = idAula;
         this.fecha = fecha;
@@ -58,11 +56,11 @@ public class ReservaAula
         this.idAula = id_aula;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

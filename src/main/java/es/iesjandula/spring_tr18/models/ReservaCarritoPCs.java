@@ -1,7 +1,5 @@
 package es.iesjandula.spring_tr18.models;
 
-import java.util.Date;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +24,7 @@ public class ReservaCarritoPCs {
     @Column(name = "ubicacion_prestamo", length = 50)
     private String ubicacionPrestamo;
     @Column(nullable = false)
-    private Date date;
+    private String date;
 
     public ReservaCarritoPCs()
     {
@@ -34,7 +32,7 @@ public class ReservaCarritoPCs {
     }    
 
     public ReservaCarritoPCs(Long id, Profesor idProfesor, CarritoPCs idCarritoPcs, String ubicacionPrestamo,
-            Date date) {
+            String date) {
         this.id = id;
         this.idProfesor = idProfesor;
         this.idCarritoPcs = idCarritoPcs;
@@ -74,11 +72,11 @@ public class ReservaCarritoPCs {
         this.ubicacionPrestamo = ubicacion_prestamo;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

@@ -64,5 +64,9 @@ public class CarritoPCs {
         this.sistemaOperativo = sistema_operativo;
     }
 
-    
+    @Override
+    public String toString()
+    {
+        return ""+ id + "";
+    }
 }

@@ -56,5 +56,9 @@ public class Profesor
         this.apellidos = apellidos;
     }
 
-    
+    @Override
+    public String toString()
+    {
+        return ""+id+"";
+    }
 }

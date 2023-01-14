@@ -54,5 +54,10 @@ public class AulaInformatica
         this.planta = planta;
     }
 
-    
+    @Override
+    public String toString()
+    {
+        return ""+ id + "";
+    }
+
 }

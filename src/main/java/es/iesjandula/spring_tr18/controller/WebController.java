@@ -1,7 +1,5 @@
 package es.iesjandula.spring_tr18.controller;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -94,10 +92,10 @@ public class WebController
         return "redirect:/reservas";
     }
 
-    @GetMapping("/reservas/formulario_actualizar_reserva_aula/{date}")
-    public String formularioActualizarReservaAula(@PathVariable("date") Date date, Model model)
+    @GetMapping("/reservas/formulario_actualizar_reserva_aula/{fecha}")
+    public String formularioActualizarReservaAula(@PathVariable("fecha") String fecha, Model model)
     {
-        ReservaAula reservaAula = reservaAulaRepository.findById(date).orElseThrow(() -> new IllegalArgumentException("La fecha de reserva "+date+" no es valida"));
+        ReservaAula reservaAula = reservaAulaRepository.findById(fecha).orElseThrow(() -> new IllegalArgumentException("La fecha de reserva "+fecha+" no es valida"));
 
         model.addAttribute("reserva_aula", reservaAula);
 
@@ -124,13 +122,13 @@ public class WebController
         return "actualizar_reserva_carrito_pcs";
     }
 
-    @PostMapping("/reservas/actualizar_reserva_aula/{date}")
-    public String actualizarReservaAula(@PathVariable("date") Date date, ReservaAula reservaAula,
+    @PostMapping("/reservas/actualizar_reserva_aula/{fecha}")
+    public String actualizarReservaAula(@PathVariable("fecha") String fecha, ReservaAula reservaAula,
     BindingResult result, Model model)
     {
         if(result.hasErrors())
         {
-            reservaAula.setFecha(date);
+            reservaAula.setFecha(fecha);
 
             return "actualizar_reserva_carrito_pcs";
         }
@@ -172,10 +170,10 @@ public class WebController
         return "redirect:/reservas";
     }
 
-    @GetMapping("/reservas/anular_reserva_aula/{date}")
-    public String anularReservaAula(@PathVariable("date") Date date, Model model)
+    @GetMapping("/reservas/anular_reserva_aula/{fecha}")
+    public String anularReservaAula(@PathVariable("fecha") String fecha, Model model)
     {
-        ReservaAula reservaAula = reservaAulaRepository.findById(date).orElseThrow(() -> new IllegalArgumentException("La fecha de reserva "+date+" no es valida"));
+        ReservaAula reservaAula = reservaAulaRepository.findById(fecha).orElseThrow(() -> new IllegalArgumentException("La fecha de reserva "+fecha+" no es valida"));
 
         reservaAulaRepository.delete(reservaAula);
 

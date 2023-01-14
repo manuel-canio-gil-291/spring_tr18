@@ -54,5 +54,9 @@ public class CarritoTablets
         this.planta = planta;
     }
 
-    
+    @Override
+    public String toString()
+    {
+        return ""+ id + "";
+    }
 }
