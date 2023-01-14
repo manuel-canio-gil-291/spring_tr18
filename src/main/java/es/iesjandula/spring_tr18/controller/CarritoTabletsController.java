@@ -41,7 +41,7 @@ public class CarritoTabletsController
     {
         carritoTabletsRepository.save(carritoTablets);
 
-        return "redirect:/carritos_tablets_inicio";
+        return "redirect:/carritos_tablets";
     }
 
     @GetMapping("/carritos_tablets/ver_formulario_actualizar_carrito_tablets/{id}")
@@ -67,7 +67,7 @@ public class CarritoTabletsController
 
         carritoTabletsRepository.save(carritoTablets);
 
-        return "redirect:/carritos_tablets_inicio";
+        return "redirect:/carritos_tablets";
     }
 
     @GetMapping("/carritos_tablets/quitar_carrito_tablets/{id}")
@@ -77,6 +77,6 @@ public class CarritoTabletsController
 
         carritoTabletsRepository.delete(carritoTablets);
 
-        return "redirect:/carritos_tablets_inicio";
+        return "redirect:/carritos_tablets";
     }
 }

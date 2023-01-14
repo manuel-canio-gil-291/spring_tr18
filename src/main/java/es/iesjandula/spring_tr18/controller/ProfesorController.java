@@ -41,7 +41,7 @@ public class ProfesorController
     {
         profesorRepository.save(profesor);
 
-        return "redirect:/profesores_inicio";
+        return "redirect:/profesores";
     }
 
     @GetMapping("profesores/ver_formulario_actualizar_profesor/{id}")
@@ -65,8 +65,8 @@ public class ProfesorController
         }
 
         profesorRepository.save(profesor);
-        
-        return "redirect:/profesores_inicio";
+
+        return "redirect:/profesores";
     }
 
     @GetMapping("profesores/quitar_profesor/{id}")
@@ -76,6 +76,6 @@ public class ProfesorController
 
         profesorRepository.delete(profesor);
 
-        return "redirect:/profesores_inicio";
+        return "redirect:/profesores";
     }
 }

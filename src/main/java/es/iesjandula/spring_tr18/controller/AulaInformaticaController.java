@@ -42,7 +42,7 @@ public class AulaInformaticaController
     {
         aulaInformaticaRepository.save(aulaInformatica);
 
-        return "redirect:/aulas_informatica_inicio";
+        return "redirect:/aulas_informatica";
     }
 
     @GetMapping("/aulas_informatica/ver_formulario_actualizar_aula/{id}")
@@ -67,7 +67,7 @@ public class AulaInformaticaController
 
         aulaInformaticaRepository.save(aulaInformatica);
 
-        return "redirect:/aulas_informatica_inicio";
+        return "redirect:/aulas_informatica";
     }
 
     @GetMapping("/aulas_informatica/quitar_aula/{id}")
@@ -76,7 +76,7 @@ public class AulaInformaticaController
         AulaInformatica aulaInformatica = aulaInformaticaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID de aula de informatica "+id+" no valido"));
 
         aulaInformaticaRepository.delete(aulaInformatica);
-        
-        return "redirect:/aulas_informatica_inicio";
+
+        return "redirect:/aulas_informatica";
     }
 }

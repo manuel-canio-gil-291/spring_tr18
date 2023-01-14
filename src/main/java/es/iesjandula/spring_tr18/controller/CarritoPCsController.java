@@ -41,7 +41,7 @@ public class CarritoPCsController
     {
         carritoPCsRepository.save(carritoPCs);
 
-        return "redirect:/carritos_pcs_inicio";
+        return "redirect:/carritos_pcs";
     }
 
     @GetMapping("/carritos_pcs/ver_formulario_actualizar_carrito_pcs/{id}")
@@ -66,7 +66,7 @@ public class CarritoPCsController
 
         carritoPCsRepository.save(carritoPCs);
 
-        return "redirect:/carritos_pcs_inicio";
+        return "redirect:/carritos_pcs";
     }
 
     @GetMapping("/carritos_pcs/quitar_carrito_pcs/{id}")
@@ -76,6 +76,6 @@ public class CarritoPCsController
 
         carritoPCsRepository.delete(carritoPCs);
 
-        return "redirect:/carritos_pcs_inicio";
+        return "redirect:/carritos_pcs";
     }
 }
