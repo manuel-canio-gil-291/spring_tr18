@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import es.iesjandula.spring_tr18.models.ReservaAula;
 
 @Repository
-public interface IReservaAula extends JpaRepository<ReservaAula, Date>
+public interface IReservaAulaRepository extends JpaRepository<ReservaAula, Date>
 {
     
 }
