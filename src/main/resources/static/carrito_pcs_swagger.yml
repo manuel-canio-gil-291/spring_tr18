@@ -1,0 +1,184 @@
+swagger: '2.0'
+host: localhost:8081
+basePath: /
+info:
+  title: PC trolleys based on Swagger
+  description: This document shows the endpoints for add, modify or delete PC trolleys data
+  version: 1.0.0
+  contact:
+    name: Manuel Canio Gil
+    url: https://github.com/manuel-canio-gil-291
+schemes:
+- http
+- https
+paths:
+  /carritos_pcs:
+    get:
+      operationId: ListPCTrolleys
+      responses:
+        200:
+          description: Query ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Carrito_PC_error'
+  /carritos_pcs/ver_formulario_nuevo_carrito_pcs:
+    parameters:
+      - name: numero_pcs
+        in: header
+        required: true
+        type: integer
+        format: int32
+      - name: planta
+        in: header
+        required: true
+        type: integer
+        format: int32
+      - name: sistema_operativo
+        in: header
+        required: false
+        type: string
+    get:
+      operationId: formNewPCTrolley
+      responses:
+        200:
+          description: Parameters ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Carrito_PC_error'
+  /carritos_pcs/ver_formulario_actualizar_carrito_pcs/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int64
+      - name: numero_pcs
+        in: header
+        required: true
+        type: integer
+        format: int32
+      - name: planta
+        in: header
+        required: true
+        type: integer
+        format: int32
+      - name: sistema_operativo
+        in: header
+        required: false
+        type: string
+    get:
+      operationId: formUpdatePCTrolley
+      responses:
+        200:
+          description: Parameters ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Carrito_PC_error'
+  /carritos_pcs/guardar_carrito_pcs:
+    parameters:
+      - name: numero_pcs
+        in: header
+        required: true
+        type: integer
+        format: int32
+      - name: planta
+        in: header
+        required: true
+        type: integer
+        format: int32
+      - name: sistema_operativo
+        in: header
+        required: false
+        type: string
+    post:
+      operationId: addPCTrolleyData
+      responses:
+        200:
+          description: PC trolley data added
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Carrito_PC_error'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Carrito_PC_error'
+  /carritos_pcs/actualizar_carrito_pcs/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int64
+      - name: numero_pcs
+        in: header
+        required: true
+        type: integer
+        format: int32
+      - name: planta
+        in: header
+        required: true
+        type: integer
+        format: int32
+      - name: sistema_operativo
+        in: header
+        required: false
+        type: string
+    put:
+      operationId: updatePCTrolleyData
+      responses:
+        200:
+          description: PC trolley data updated
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Carrito_PC_error'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Carrito_PC_error'
+  /carritos_pcs/quitar_carrito_pcs/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int64
+    delete:
+      operationId: deletePCTrolleyData
+      responses:
+        200:
+          description: PC trolley data deleted
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Carrito_PC_error'
+
+definitions:
+  Carrito_PC:
+    properties: 
+      id:
+        type: integer
+        format: int64
+        description: "The PC trolley ID"
+      numero_pcs:
+        type: integer
+        format: int32
+        description: "The number of PCs"
+      planta:
+        type: integer
+        format: int32
+        description: "The floor that it's located"
+      sistema_operativo:
+        type: string
+        description: "The operating system installed"
+  Carrito_PC_error:
+    properties: 
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string

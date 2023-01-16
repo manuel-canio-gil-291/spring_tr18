@@ -74,7 +74,7 @@ public class ProfesorController
      * @param model
      * @return the HTML web page teacher's data form
      */
-    @GetMapping("profesores/ver_formulario_actualizar_profesor/{id}")
+    @GetMapping("/profesores/ver_formulario_actualizar_profesor/{id}")
     public String formularioActualizarProfesor(@PathVariable("id") Long id, Model model)
     {
         Profesor profesor = profesorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("El Id del profesor "+id+" no es valido"));
@@ -88,7 +88,7 @@ public class ProfesorController
      * @param model
      * @return redirection of the main page
      */
-    @PostMapping("profesores/actualizar_profesor/{id}")
+    @PostMapping("/profesores/actualizar_profesor/{id}")
     public String actualizarDatosProfesor(@PathVariable("id") Long id, Profesor profesor,
     BindingResult result, Model model)
     {
@@ -107,7 +107,7 @@ public class ProfesorController
      * @param model
      * @return redirection of the main page
      */
-    @GetMapping("profesores/quitar_profesor/{id}")
+    @GetMapping("/profesores/quitar_profesor/{id}")
     public String quitarProfesor(@PathVariable("id") Long id, Model model)
     {
         Profesor profesor = profesorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("El Id del profesor "+id+" no es valido"));

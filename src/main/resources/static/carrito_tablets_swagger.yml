@@ -1,0 +1,168 @@
+swagger: '2.0'
+host: localhost:8081
+basePath: /
+info:
+  title: Tablet trolleys based on Swagger
+  description: This document shows the endpoints for add, modify or delete tablet trolleys data
+  version: 1.0.0
+  contact:
+    name: Manuel Canio Gil
+    url: https://github.com/manuel-canio-gil-291
+schemes:
+- http
+- https
+paths:
+  /carritos_tablets:
+    get:
+      operationId: ListTabletTrolleys
+      responses:
+        200:
+          description: Query ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Carrito_tablet_error'
+  /carritos_tablets/ver_formulario_nuevo_carrito_tablets:
+    parameters:
+      - name: numero_Tablets
+        in: header
+        required: true
+        type: integer
+        format: int32
+      - name: planta
+        in: header
+        required: true
+        type: integer
+        format: int32
+    get:
+      operationId: formNewTabletTrolley
+      responses:
+        200:
+          description: Parameters ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Carrito_tablet_error'
+  /carritos_tablets/ver_formulario_actualizar_carrito_tablets/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int64
+      - name: numero_Tablets
+        in: header
+        required: true
+        type: integer
+        format: int32
+      - name: planta
+        in: header
+        required: true
+        type: integer
+        format: int32
+    get:
+      operationId: formUpdateTabletTrolley
+      responses:
+        200:
+          description: Parameters ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Carrito_tablet_error'
+  /carritos_tablets/guardar_carrito_tablets:
+    parameters:
+      - name: numero_Tablets
+        in: header
+        required: true
+        type: integer
+        format: int32
+      - name: planta
+        in: header
+        required: true
+        type: integer
+        format: int32
+    post:
+      operationId: addTabletTrolleyData
+      responses:
+        200:
+          description: Tablet trolley data added
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Carrito_tablet_error'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Carrito_tablet_error'
+  /carritos_tablets/actualizar_carrito_tablets/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int64
+      - name: numero_Tablets
+        in: header
+        required: true
+        type: integer
+        format: int32
+      - name: planta
+        in: header
+        required: true
+        type: integer
+        format: int32
+    put:
+      operationId: updateTabletTrolleyData
+      responses:
+        200:
+          description: Tablet trolley data updated
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Carrito_tablet_error'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Carrito_tablet_error'
+  /carritos_tablets/quitar_carrito_tablets/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int64
+    delete:
+      operationId: deleteTabletTrolleyData
+      responses:
+        200:
+          description: Tablet trolley data deleted
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Carrito_tablet_error'
+
+definitions:
+  Carrito_tablet:
+    properties: 
+      id:
+        type: integer
+        format: int64
+        description: "The Tablet trolley ID"
+      numero_tablets:
+        type: integer
+        format: int32
+        description: "The number of tablets"
+      planta:
+        type: integer
+        format: int32
+        description: "The floor that it's located"
+      sistema_operativo:
+        type: string
+        description: "The operating system installed"
+  Carrito_tablet_error:
+    properties: 
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string

@@ -1,0 +1,157 @@
+swagger: '2.0'
+host: localhost:8081
+basePath: /
+info:
+  title: Teachers based on Swagger
+  description: This document shows the endpoints for add, modify or delete teachers data
+  version: 1.0.0
+  contact:
+    name: Manuel Canio Gil
+    url: https://github.com/manuel-canio-gil-291
+schemes:
+- http
+- https
+paths:
+  /profesores:
+    get:
+      operationId: listTeachers
+      responses:
+        200:
+          description: Query ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Teacher_error'
+  /profesores/ver_formulario_nuevo_profesor:
+    get:
+      parameters:
+        - name: nombre
+          in: header
+          required: true
+          type: string
+        - name: apellidos
+          in: header
+          required: true
+          type: string
+      operationId: formNewTeacher
+      responses:
+        200:
+          description: Parameters ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Teacher_error'
+  /profesores/ver_formulario_actualizar_profesor/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+        - name: nombre
+          in: header
+          required: true
+          type: string
+        - name: apellidos
+          in: header
+          required: true
+          type: string
+      operationId: formUpdateTeacher
+      responses:
+        200:
+          description: Parameters ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Teacher_error'
+  /profesores/guardar_profesor:
+    post:
+      parameters:
+        - name: nombre
+          in: header
+          required: true
+          type: string
+        - name: apellidos
+          in: header
+          required: true
+          type: string
+      operationId: addTeacherData
+      responses:
+        200:
+          description: Teacher data added successfully
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Teacher_error'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Teacher_error'
+  /profesores/actualizar_profesor/{id}:
+    put:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+        - name: nombre
+          in: header
+          required: true
+          type: string
+        - name: apellidos
+          in: header
+          required: true
+          type: string
+      operationId: modifyTeacherData
+      responses:
+        200:
+          description: Teacher data modified
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Teacher_error'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Teacher_error'
+  /profesores/quitar_profesor/{id}:
+    delete:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      operationId: deleteTeacherData
+      responses:
+        200:
+          description: Teacher data deleted
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Teacher_error'
+
+
+definitions:
+  Teacher:
+    properties: 
+      id:
+        type: integer
+        format: int64
+        description: "The teacher ID"
+      nombre:
+        type: string
+        description: "The name of the teacher"
+      apellidos:
+        type: string
+        description: "The surname of the teacher"
+  Teacher_error:
+    properties: 
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+  
