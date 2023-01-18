@@ -1,0 +1,509 @@
+swagger: '2.0'
+host: localhost:8081
+basePath: /reservas
+info:
+  version: 1.0.0
+  title: Reservation based on Swagger
+  description: This document shows the endpoints for add, modify or delete a reservation
+  contact:
+    name: Manuel Canio Gil
+    url: https://github.com/manuel-canio-gil-291
+schemes:
+- http
+- https
+paths:
+  /:
+    get:
+      operationId: getReservations
+      responses:
+        200:
+          description: Query ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /formulario_nueva_reserva_aula:
+    parameters:
+      - name: idProfesor
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: idAula
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: fecha
+        in: header
+        required: true
+        type: string
+    get:
+      operationId: formNewClassroomReservation
+      responses:
+        200:
+          description: Parameters ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /formulario_nueva_reserva_carrito_pcs:
+    parameters:
+      - name: idProfesor
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: idCarritoPcs
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: ubicacion_prestamo
+        in: header
+        required: false
+        type: string
+      - name: date
+        in: header
+        required: true
+        type: string
+    get:
+      operationId: formNewPCTrolleyReservation
+      responses:
+        200:
+          description: Parameters ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /formulario_nueva_reserva_carrito_tablets:
+    parameters:
+      - name: idProfesor
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: idCarritoTablets
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: ubicacion_prestamo
+        in: header
+        required: false
+        type: string
+      - name: date
+        in: header
+        required: true
+        type: string
+    get:
+      operationId: formNewTabletTrolleyReservation
+      responses:
+        200:
+          description: Parameters ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /guardar_reserva_aula:
+    parameters:
+      - name: idProfesor
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: idAula
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: fecha
+        in: header
+        required: true
+        type: string
+    post:
+      operationId: AddNewClassroomReservation
+      responses:
+        200:
+          description: Classroom reservation added
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Reservation_error'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /guardar_reserva_carrito_pcs:
+    parameters:
+      - name: idProfesor
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: idCarritoPcs
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: ubicacion_prestamo
+        in: header
+        required: false
+        type: string
+      - name: date
+        in: header
+        required: true
+        type: string
+    post:
+      operationId: AddNewPCTrolleyReservation
+      responses:
+        200:
+          description: PC trolley reservation added
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Reservation_error'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /guardar_reserva_carrito_tablets:
+    parameters:
+      - name: idProfesor
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: idCarritoPcs
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: ubicacion_prestamo
+        in: header
+        required: false
+        type: string
+      - name: date
+        in: header
+        required: true
+        type: string
+    post:
+      operationId: AddNewTabletTrolleyReservation
+      responses:
+        200:
+          description: Tablet trolley reservation added
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Reservation_error'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /formulario_actualizar_reserva_aula/{fecha}:
+    parameters:
+      - name: idProfesor
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: idAula
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: fecha
+        in: path
+        required: true
+        type: string
+    get:
+      operationId: formUpdateClassroomReservation
+      responses:
+        200:
+          description: Parameters ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /formulario_actualizar_reserva_carrito_pcs/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int64
+      - name: idProfesor
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: idCarritoPcs
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: ubicacion_prestamo
+        in: header
+        required: false
+        type: string
+      - name: date
+        in: header
+        required: true
+        type: string
+    get:
+      operationId: formUpdatePCTrolleyReservation
+      responses:
+        200:
+          description: Parameters ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /formulario_actualizar_reserva_carrito_tablets/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int64
+      - name: idProfesor
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: idCarritoTablets
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: ubicacion_prestamo
+        in: header
+        required: false
+        type: string
+      - name: date
+        in: header
+        required: true
+        type: string
+    get:
+      operationId: formUpdateTabletTrolleyReservation
+      responses:
+        200:
+          description: Parameters ok
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /reservas/actualizar_reserva_aula/{fecha}:
+    parameters:
+      - name: idProfesor
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: idAula
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: fecha
+        in: path
+        required: true
+        type: string
+    put:
+      operationId: updateClassroomReservation
+      responses:
+        200:
+          description: Classroom reservation updated
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Reservation_error'
+        500:
+          description: Internal server errror
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /actualizar_reserva_carrito_pcs/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int64
+      - name: idProfesor
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: idCarritoPcs
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: ubicacion_prestamo
+        in: header
+        required: false
+        type: string
+      - name: date
+        in: header
+        required: true
+        type: string
+    put:
+      operationId: updatePCTrolleyReservation
+      responses:
+        200:
+          description: PC trolley reservation updated
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Reservation_error'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /actualizar_reserva_carrito_tablets/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int64
+      - name: idProfesor
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: idCarritoPcs
+        in: header
+        required: true
+        type: integer
+        format: int64
+      - name: ubicacion_prestamo
+        in: header
+        required: false
+        type: string
+      - name: date
+        in: header
+        required: true
+        type: string
+    put:
+      operationId: updateTabletTrolleyReservation
+      responses:
+        200:
+          description: Tablet trolley reservation updated
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Reservation_error'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /anular_reserva_aula/{fecha}:
+    parameters:
+      - name: fecha
+        in: path
+        required: true
+        type: string
+    delete:
+      operationId: deleteClassroomReservation
+      responses:
+        200:
+          description: Classroom reservation deleted
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /anular_reserva_carrito_pcs/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int64
+    delete:
+      operationId: deletePCTrolleyReservation
+      responses:
+        200:
+          description: PC trolley reservation deleted
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+  /anular_reserva_carrito_tablets/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int64
+    delete:
+      operationId: deleteTabletTrolleyReservation
+      responses:
+        200:
+          description: Tablet trolley reservation deleted
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Reservation_error'
+
+definitions:
+  TIC_classroom_reservation:
+    properties: 
+      idProfesor:
+        type: integer
+        format: int64
+        description: "The teacher ID"
+      idAula:
+        type: integer
+        format: int64
+        description: "The classroom ID"
+      fecha:
+        type: string
+        description: "The date of the reservation"
+  PC_trolleys_reservation:
+    properties: 
+      id:
+        type: integer
+        format: int64
+        description: "The reservation ID"
+      idProfesor:
+        type: integer
+        format: int64
+        description: "The teacher ID"
+      idCarritoPcs:
+        type: integer
+        format: int64
+        description: "The PC trolley ID"
+      ubicacion_prestamo:
+        type: string
+        description: "The loan location"
+      date:
+        type: string
+        description: "The date of the reservation"
+  Tablet_trolleys_reservation:
+    properties: 
+      id:
+        type: integer
+        format: int64
+        description: "The reservation ID"
+      idProfesor:
+        type: integer
+        format: int64
+        description: "The teacher ID"
+      idCarritoTablets:
+        type: integer
+        format: int64
+        description: "The tablet trolley ID"
+      ubicacion_prestamo:
+        type: string
+        description: "The loan location"
+      date:
+        type: string
+        description: "The date of the reservation"
+  Reservation_error:
+    properties: 
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
