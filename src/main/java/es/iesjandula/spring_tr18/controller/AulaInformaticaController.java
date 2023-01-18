@@ -1,20 +1,13 @@
-/**
- * ------------------------------------------------------
- * | WARNING!!!                                         |
- * | This is a stable version of the code application.  |
- * | Please, don't modify!                              |
- * ------------------------------------------------------
- */
 package es.iesjandula.spring_tr18.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.iesjandula.spring_tr18.models.AulaInformatica;
 import es.iesjandula.spring_tr18.repositories.IAulaInformaticaRepository;
@@ -24,6 +17,7 @@ import es.iesjandula.spring_tr18.repositories.IAulaInformaticaRepository;
  * @version 1.0.0
  */
 @Controller
+@RequestMapping(value = "/aulas_informatica")
 public class AulaInformaticaController 
 {
     /**
@@ -36,7 +30,7 @@ public class AulaInformaticaController
      * @param model
      * @return the HTML main page
      */
-    @GetMapping("/aulas_informatica")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String paginaInicio(Model model)
     {
         model.addAttribute("lista_aulas", aulaInformaticaRepository.findAll());
@@ -48,7 +42,7 @@ public class AulaInformaticaController
      * @param model
      * @return the HTML web page classroom data form 
      */
-    @GetMapping("/aulas_informatica/ver_formulario_nueva_aula")
+    @RequestMapping(value = "/ver_formulario_nueva_aula", method = RequestMethod.GET)
     public String formularioNuevaAula(Model model)
     {
         AulaInformatica aulaInformatica = new AulaInformatica();
@@ -62,19 +56,19 @@ public class AulaInformaticaController
      * @param model
      * @return redirection of the main page
      */
-    @PostMapping("/aulas_informatica/guardar_aula")
+    @RequestMapping(value = "/guardar_aula", method = RequestMethod.POST)
     public String guardarDatosAulaInformatica(@ModelAttribute("aula_informatica") AulaInformatica aulaInformatica)
     {
         aulaInformaticaRepository.save(aulaInformatica);
 
-        return "redirect:/aulas_informatica";
+        return "redirect:/aulas_informatica/";
     }
     /**
      * This URL is a form which you can update the classroom data passing the id
      * @param model
      * @return the HTML web page classroom data form 
      */
-    @GetMapping("/aulas_informatica/ver_formulario_actualizar_aula/{id}")
+    @RequestMapping(value = "/ver_formulario_actualizar_aula/{id}", method = RequestMethod.GET)
     public String formularioActualizarAula(@PathVariable("id") Long id, Model model)
     {
         AulaInformatica aulaInformatica = aulaInformaticaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID de aula de informatica "+id+" no valido"));
@@ -88,7 +82,7 @@ public class AulaInformaticaController
      * @param model
      * @return redirection of the main page
      */
-    @PostMapping("/aulas_informatica/actualizar_aula/{id}")
+    @RequestMapping(value = "/actualizar_aula/{id}", method = RequestMethod.PUT)
     public String actualizarDatosAulaInformatica(@PathVariable("id") Long id, AulaInformatica aulaInformatica,
     BindingResult result, Model model)
     {
@@ -100,20 +94,20 @@ public class AulaInformaticaController
 
         aulaInformaticaRepository.save(aulaInformatica);
 
-        return "redirect:/aulas_informatica";
+        return "redirect:/aulas_informatica/";
     }
     /**
      * This URL delete the classroom data in the table passing the id
      * @param model
      * @return redirection of the main page
      */
-    @GetMapping("/aulas_informatica/quitar_aula/{id}")
+    @RequestMapping(value = "/quitar_aula/{id}", method = RequestMethod.DELETE)
     public String quitarAula(@PathVariable("id") Long id, Model model)
     {
         AulaInformatica aulaInformatica = aulaInformaticaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID de aula de informatica "+id+" no valido"));
 
         aulaInformaticaRepository.delete(aulaInformatica);
 
-        return "redirect:/aulas_informatica";
+        return "redirect:/aulas_informatica/";
     }
 }
