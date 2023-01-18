@@ -1,6 +1,6 @@
 swagger: '2.0'
 host: localhost:8081
-basePath: /
+basePath: /aulas_informatica
 info:
   version: 1.0.0
   title: TIC classroom based on Swagger
@@ -12,7 +12,7 @@ schemes:
 - http
 - https
 paths:
-  /aulas_informatica:
+  /:
     get: 
       operationId: getListTICClassroom
       responses:
@@ -22,7 +22,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/TIC_classroom_error'
-  /aulas_informatica/ver_formulario_nueva_aula:
+  /ver_formulario_nueva_aula:
     get:
       parameters:
         - name: numero_aula
@@ -43,7 +43,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/TIC_classroom_error'
-  /aulas_informatica/ver_formulario_actualizar_aula/{id}:
+  /ver_formulario_actualizar_aula/{id}:
     get:
       parameters:
         - name: id
@@ -69,7 +69,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/TIC_classroom_error'
-  /aulas_informatica/guardar_aula:
+  /guardar_aula:
     post:
       parameters:
         - name: numero_aula
@@ -94,7 +94,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/TIC_classroom_error'
-  /aulas_informatica/actualizar_aula/{id}:
+  /actualizar_aula/{id}:
     put:
       parameters:
         - name: id
@@ -124,7 +124,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/TIC_classroom_error'
-  /aulas_informatica/quitar_aula/{id}:
+  /quitar_aula/{id}:
     delete:
       parameters:
         - name: id
