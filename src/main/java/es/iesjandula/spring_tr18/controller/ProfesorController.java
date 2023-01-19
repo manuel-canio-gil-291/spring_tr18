@@ -1,20 +1,13 @@
-/**
- * ------------------------------------------------------
- * | WARNING!!!                                         |
- * | This is a stable version of the code application.  |
- * | Please, don't modify!                              |
- * ------------------------------------------------------
- */
 package es.iesjandula.spring_tr18.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.iesjandula.spring_tr18.models.Profesor;
 import es.iesjandula.spring_tr18.repositories.IProfesorRepository;
@@ -24,6 +17,7 @@ import es.iesjandula.spring_tr18.repositories.IProfesorRepository;
  * @version 1.0.0
  */
 @Controller
+@RequestMapping(value = "/profesores")
 public class ProfesorController 
 {
     /**
@@ -36,7 +30,7 @@ public class ProfesorController
      * @param model
      * @return the HTML main page
      */
-    @GetMapping("/profesores")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String paginaInicio(Model model)
     {
         model.addAttribute("lista_profesores", profesorRepository.findAll());
@@ -48,7 +42,7 @@ public class ProfesorController
      * @param model
      * @return the HTML web page teacher's data form 
      */
-    @GetMapping("/profesores/ver_formulario_nuevo_profesor")
+    @RequestMapping(value = "/ver_formulario_nuevo_profesor", method = RequestMethod.GET)
     public String formularioNuevoProfesor(Model model)
     {
         Profesor profesor = new Profesor();
@@ -62,19 +56,19 @@ public class ProfesorController
      * @param model
      * @return redirection of the main page
      */
-    @PostMapping("/profesores/guardar_profesor")
+    @RequestMapping(value = "/guardar_profesor", method = RequestMethod.POST)
     public String guardarDatosProfesor(@ModelAttribute("profesor") Profesor profesor)
     {
         profesorRepository.save(profesor);
 
-        return "redirect:/profesores";
+        return "redirect:/profesores/";
     }
     /**
      * This URL is a form which you can modify the teacher's data passing the id
      * @param model
      * @return the HTML web page teacher's data form
      */
-    @GetMapping("/profesores/ver_formulario_actualizar_profesor/{id}")
+    @RequestMapping(value = "/ver_formulario_actualizar_profesor/{id}", method = RequestMethod.GET)
     public String formularioActualizarProfesor(@PathVariable("id") Long id, Model model)
     {
         Profesor profesor = profesorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("El Id del profesor "+id+" no es valido"));
@@ -88,7 +82,7 @@ public class ProfesorController
      * @param model
      * @return redirection of the main page
      */
-    @PostMapping("/profesores/actualizar_profesor/{id}")
+    @RequestMapping(value = "/actualizar_profesor/{id}", method = RequestMethod.PUT)
     public String actualizarDatosProfesor(@PathVariable("id") Long id, Profesor profesor,
     BindingResult result, Model model)
     {
@@ -100,20 +94,20 @@ public class ProfesorController
 
         profesorRepository.save(profesor);
 
-        return "redirect:/profesores";
+        return "redirect:/profesores/";
     }
     /**
      * This URL delete the teacher's data in the table
      * @param model
      * @return redirection of the main page
      */
-    @GetMapping("/profesores/quitar_profesor/{id}")
+    @RequestMapping(value = "/quitar_profesor/{id}", method = RequestMethod.DELETE)
     public String quitarProfesor(@PathVariable("id") Long id, Model model)
     {
         Profesor profesor = profesorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("El Id del profesor "+id+" no es valido"));
 
         profesorRepository.delete(profesor);
 
-        return "redirect:/profesores";
+        return "redirect:/profesores/";
     }
 }

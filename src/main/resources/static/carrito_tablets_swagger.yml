@@ -1,6 +1,6 @@
 swagger: '2.0'
 host: localhost:8081
-basePath: /
+basePath: /carritos_tablets
 info:
   title: Tablet trolleys based on Swagger
   description: This document shows the endpoints for add, modify or delete tablet trolleys data
@@ -12,7 +12,7 @@ schemes:
 - http
 - https
 paths:
-  /carritos_tablets:
+  /:
     get:
       operationId: ListTabletTrolleys
       responses:
@@ -22,7 +22,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Carrito_tablet_error'
-  /carritos_tablets/ver_formulario_nuevo_carrito_tablets:
+  /ver_formulario_nuevo_carrito_tablets:
     parameters:
       - name: numero_Tablets
         in: header
@@ -43,7 +43,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Carrito_tablet_error'
-  /carritos_tablets/ver_formulario_actualizar_carrito_tablets/{id}:
+  /ver_formulario_actualizar_carrito_tablets/{id}:
     parameters:
       - name: id
         in: path
@@ -69,7 +69,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Carrito_tablet_error'
-  /carritos_tablets/guardar_carrito_tablets:
+  /guardar_carrito_tablets:
     parameters:
       - name: numero_Tablets
         in: header
@@ -94,7 +94,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Carrito_tablet_error'
-  /carritos_tablets/actualizar_carrito_tablets/{id}:
+  /actualizar_carrito_tablets/{id}:
     parameters:
       - name: id
         in: path
@@ -124,7 +124,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Carrito_tablet_error'
-  /carritos_tablets/quitar_carrito_tablets/{id}:
+  /quitar_carrito_tablets/{id}:
     parameters:
       - name: id
         in: path

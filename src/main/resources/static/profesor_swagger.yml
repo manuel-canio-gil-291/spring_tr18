@@ -1,6 +1,6 @@
 swagger: '2.0'
 host: localhost:8081
-basePath: /
+basePath: /profesores
 info:
   title: Teachers based on Swagger
   description: This document shows the endpoints for add, modify or delete teachers data
@@ -12,7 +12,7 @@ schemes:
 - http
 - https
 paths:
-  /profesores:
+  /:
     get:
       operationId: listTeachers
       responses:
@@ -22,7 +22,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Teacher_error'
-  /profesores/ver_formulario_nuevo_profesor:
+  /ver_formulario_nuevo_profesor:
     get:
       parameters:
         - name: nombre
@@ -41,7 +41,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Teacher_error'
-  /profesores/ver_formulario_actualizar_profesor/{id}:
+  /ver_formulario_actualizar_profesor/{id}:
     get:
       parameters:
         - name: id
@@ -65,7 +65,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Teacher_error'
-  /profesores/guardar_profesor:
+  /guardar_profesor:
     post:
       parameters:
         - name: nombre
@@ -88,7 +88,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Teacher_error'
-  /profesores/actualizar_profesor/{id}:
+  /actualizar_profesor/{id}:
     put:
       parameters:
         - name: id
@@ -116,7 +116,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Teacher_error'
-  /profesores/quitar_profesor/{id}:
+  /quitar_profesor/{id}:
     delete:
       parameters:
         - name: id

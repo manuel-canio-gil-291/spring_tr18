@@ -1,20 +1,13 @@
-/**
- * ------------------------------------------------------
- * | WARNING!!!                                         |
- * | This is a stable version of the code application.  |
- * | Please, don't modify!                              |
- * ------------------------------------------------------
- */
 package es.iesjandula.spring_tr18.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.iesjandula.spring_tr18.models.CarritoTablets;
 import es.iesjandula.spring_tr18.repositories.ICarritoTabletsRepository;
@@ -24,6 +17,7 @@ import es.iesjandula.spring_tr18.repositories.ICarritoTabletsRepository;
  * @version 1.0.0
  */
 @Controller
+@RequestMapping(value = "/carritos_tablets")
 public class CarritoTabletsController 
 {
     /**
@@ -36,7 +30,7 @@ public class CarritoTabletsController
      * @param model
      * @return the HTML main page
      */
-    @GetMapping("/carritos_tablets")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String paginaInicio(Model model)
     {
         model.addAttribute("lista_carritos_tablets", carritoTabletsRepository.findAll());
@@ -48,7 +42,7 @@ public class CarritoTabletsController
      * @param model
      * @return the HTML web page tablet trolley data form 
      */
-    @GetMapping("/carritos_tablets/ver_formulario_nuevo_carrito_tablets")
+    @RequestMapping(value = "/ver_formulario_nuevo_carrito_tablets", method = RequestMethod.GET)
     public String formularioNuevoCarritoTablets(Model model)
     {
         CarritoTablets carritoTablets = new CarritoTablets();
@@ -62,19 +56,19 @@ public class CarritoTabletsController
      * @param model
      * @return redirection of the main page
      */
-    @PostMapping("/carritos_tablets/guardar_carrito_tablets")
+    @RequestMapping(value = "/guardar_carrito_tablets", method = RequestMethod.POST)
     public String guardarCarritoTablets(@ModelAttribute("carrito_tablets") CarritoTablets carritoTablets)
     {
         carritoTabletsRepository.save(carritoTablets);
 
-        return "redirect:/carritos_tablets";
+        return "redirect:/carritos_tablets/";
     }
     /**
      * This URL is a form which you can update the tablet trolley data passing the id
      * @param model
      * @return the HTML web page tablet trolley data form 
      */
-    @GetMapping("/carritos_tablets/ver_formulario_actualizar_carrito_tablets/{id}")
+    @RequestMapping(value = "/ver_formulario_actualizar_carrito_tablets/{id}", method = RequestMethod.GET)
     public String formularioActualizarCarritoTablets(@PathVariable("id") Long id, Model model)
     {
         CarritoTablets carritoTablets = carritoTabletsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No se ha encontrado el ID del carrito "+id));
@@ -88,7 +82,7 @@ public class CarritoTabletsController
      * @param model
      * @return redirection of the main page
      */
-    @PostMapping("/carritos_tablets/actualizar_carrito_tablets/{id}")
+    @RequestMapping(value = "/actualizar_carrito_tablets/{id}", method = RequestMethod.PUT)
     public String actualizarDatosCarritoTablets(@PathVariable("id") Long id, CarritoTablets carritoTablets,
     BindingResult result, Model model)
     {
@@ -101,20 +95,20 @@ public class CarritoTabletsController
 
         carritoTabletsRepository.save(carritoTablets);
 
-        return "redirect:/carritos_tablets";
+        return "redirect:/carritos_tablets/";
     }
     /**
      * This URL delete the tablet trolley data in the table
      * @param model
      * @return redirection of the main page
      */
-    @GetMapping("/carritos_tablets/quitar_carrito_tablets/{id}")
+    @RequestMapping(value = "/quitar_carrito_tablets/{id}", method = RequestMethod.DELETE)
     public String quitarCarritoTablets(@PathVariable("id") Long id, Model model)
     {
         CarritoTablets carritoTablets = carritoTabletsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No se ha encontrado el ID del carrito "+id));
 
         carritoTabletsRepository.delete(carritoTablets);
 
-        return "redirect:/carritos_tablets";
+        return "redirect:/carritos_tablets/";
     }
 }

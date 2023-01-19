@@ -1,6 +1,6 @@
 swagger: '2.0'
 host: localhost:8081
-basePath: /
+basePath: /carritos_pcs
 info:
   title: PC trolleys based on Swagger
   description: This document shows the endpoints for add, modify or delete PC trolleys data
@@ -12,7 +12,7 @@ schemes:
 - http
 - https
 paths:
-  /carritos_pcs:
+  /:
     get:
       operationId: ListPCTrolleys
       responses:
@@ -22,7 +22,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Carrito_PC_error'
-  /carritos_pcs/ver_formulario_nuevo_carrito_pcs:
+  /ver_formulario_nuevo_carrito_pcs:
     parameters:
       - name: numero_pcs
         in: header
@@ -47,7 +47,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Carrito_PC_error'
-  /carritos_pcs/ver_formulario_actualizar_carrito_pcs/{id}:
+  /ver_formulario_actualizar_carrito_pcs/{id}:
     parameters:
       - name: id
         in: path
@@ -77,7 +77,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Carrito_PC_error'
-  /carritos_pcs/guardar_carrito_pcs:
+  /guardar_carrito_pcs:
     parameters:
       - name: numero_pcs
         in: header
@@ -106,7 +106,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Carrito_PC_error'
-  /carritos_pcs/actualizar_carrito_pcs/{id}:
+  /actualizar_carrito_pcs/{id}:
     parameters:
       - name: id
         in: path
@@ -140,7 +140,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/Carrito_PC_error'
-  /carritos_pcs/quitar_carrito_pcs/{id}:
+  /quitar_carrito_pcs/{id}:
     parameters:
       - name: id
         in: path
