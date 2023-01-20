@@ -82,7 +82,7 @@ public class AulaInformaticaController
      * @param model
      * @return redirection of the main page
      */
-    @RequestMapping(value = "/actualizar_aula/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/actualizar_aula/{id}", method = RequestMethod.POST)
     public String actualizarDatosAulaInformatica(@PathVariable("id") Long id, AulaInformatica aulaInformatica,
     BindingResult result, Model model)
     {
@@ -101,7 +101,7 @@ public class AulaInformaticaController
      * @param model
      * @return redirection of the main page
      */
-    @RequestMapping(value = "/quitar_aula/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/quitar_aula/{id}", method = RequestMethod.GET)
     public String quitarAula(@PathVariable("id") Long id, Model model)
     {
         AulaInformatica aulaInformatica = aulaInformaticaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID de aula de informatica "+id+" no valido"));

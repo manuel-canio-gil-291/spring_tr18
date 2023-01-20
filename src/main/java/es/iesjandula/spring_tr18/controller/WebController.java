@@ -178,7 +178,7 @@ public class WebController
      * @param model
      * @return redirection of the main page
      */
-    @RequestMapping(value = "/reservas/actualizar_reserva_aula/{fecha}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/reservas/actualizar_reserva_aula/{fecha}", method = RequestMethod.POST)
     public String actualizarReservaAula(@PathVariable("fecha") String fecha, ReservaAula reservaAula,
     BindingResult result, Model model)
     {
@@ -198,7 +198,7 @@ public class WebController
      * @param model
      * @return redirection of the main page
      */
-    @RequestMapping(value = "/actualizar_reserva_carrito_tablets/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/actualizar_reserva_carrito_tablets/{id}", method = RequestMethod.POST)
     public String actualizarReservaCarritoTablets(@PathVariable("id") Long id, ReservaCarritoTablets reservaCarritoTablets,
     BindingResult result, Model model)
     {
@@ -218,7 +218,7 @@ public class WebController
      * @param model
      * @return redirection of the main page
      */
-    @RequestMapping(value = "/actualizar_reserva_carrito_pcs/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/actualizar_reserva_carrito_pcs/{id}", method = RequestMethod.POST)
     public String actualizarReservaCarritoPCs(@PathVariable("id") Long id, ReservaCarritoPCs reservaCarritoPCs,
     BindingResult result, Model model)
     {
@@ -238,7 +238,7 @@ public class WebController
      * @param model
      * @return redirection of the main page
      */
-    @RequestMapping(value = "/anular_reserva_aula/{fecha}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/anular_reserva_aula/{fecha}", method = RequestMethod.GET)
     public String anularReservaAula(@PathVariable("fecha") String fecha, Model model)
     {
         ReservaAula reservaAula = reservaAulaRepository.findById(fecha).orElseThrow(() -> new IllegalArgumentException("La fecha de reserva "+fecha+" no es valida"));
@@ -252,7 +252,7 @@ public class WebController
      * @param model
      * @return redirection of the main page
      */
-    @RequestMapping(value = "/anular_reserva_carrito_tablets/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/anular_reserva_carrito_tablets/{id}", method = RequestMethod.GET)
     public String anularReservaCarritoTablets(@PathVariable("id") Long id, Model model)
     {
         ReservaCarritoTablets reservaCarritoTablets = reservaCarritoTabletsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No se pudo encontrar la reserva del carrito de tablets numero "+id));
@@ -266,7 +266,7 @@ public class WebController
      * @param model
      * @return redirection of the main page
      */
-    @RequestMapping(value = "/anular_reserva_carrito_pcs/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/anular_reserva_carrito_pcs/{id}", method = RequestMethod.GET)
     public String anularReservaCarritoPCs(@PathVariable("id") Long id, Model model)
     {
         ReservaCarritoPCs reservaCarritoPCs = reservaCarritoPCsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No se pudo encontrar la reserva del carrito de ordenadores numero "+id));

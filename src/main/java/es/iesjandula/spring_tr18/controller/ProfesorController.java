@@ -82,7 +82,7 @@ public class ProfesorController
      * @param model
      * @return redirection of the main page
      */
-    @RequestMapping(value = "/actualizar_profesor/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/actualizar_profesor/{id}", method = RequestMethod.POST)
     public String actualizarDatosProfesor(@PathVariable("id") Long id, Profesor profesor,
     BindingResult result, Model model)
     {
@@ -101,7 +101,7 @@ public class ProfesorController
      * @param model
      * @return redirection of the main page
      */
-    @RequestMapping(value = "/quitar_profesor/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/quitar_profesor/{id}", method = RequestMethod.GET)
     public String quitarProfesor(@PathVariable("id") Long id, Model model)
     {
         Profesor profesor = profesorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("El Id del profesor "+id+" no es valido"));

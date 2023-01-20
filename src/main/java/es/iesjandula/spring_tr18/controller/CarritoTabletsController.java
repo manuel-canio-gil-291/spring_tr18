@@ -82,7 +82,7 @@ public class CarritoTabletsController
      * @param model
      * @return redirection of the main page
      */
-    @RequestMapping(value = "/actualizar_carrito_tablets/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/actualizar_carrito_tablets/{id}", method = RequestMethod.POST)
     public String actualizarDatosCarritoTablets(@PathVariable("id") Long id, CarritoTablets carritoTablets,
     BindingResult result, Model model)
     {
@@ -102,7 +102,7 @@ public class CarritoTabletsController
      * @param model
      * @return redirection of the main page
      */
-    @RequestMapping(value = "/quitar_carrito_tablets/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/quitar_carrito_tablets/{id}", method = RequestMethod.GET)
     public String quitarCarritoTablets(@PathVariable("id") Long id, Model model)
     {
         CarritoTablets carritoTablets = carritoTabletsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No se ha encontrado el ID del carrito "+id));
