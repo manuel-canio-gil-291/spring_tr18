@@ -4,7 +4,7 @@ basePath: /profesores
 info:
   title: Teachers based on Swagger
   description: This document shows the endpoints for add, modify or delete teachers data
-  version: 1.0.0
+  version: 1.1.0
   contact:
     name: Manuel Canio Gil
     url: https://github.com/manuel-canio-gil-291
@@ -89,7 +89,7 @@ paths:
           schema:
             $ref: '#/definitions/Teacher_error'
   /actualizar_profesor/{id}:
-    put:
+    post:
       parameters:
         - name: id
           in: path
@@ -117,7 +117,7 @@ paths:
           schema:
             $ref: '#/definitions/Teacher_error'
   /quitar_profesor/{id}:
-    delete:
+    get:
       parameters:
         - name: id
           in: path

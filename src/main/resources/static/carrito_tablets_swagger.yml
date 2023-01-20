@@ -4,7 +4,7 @@ basePath: /carritos_tablets
 info:
   title: Tablet trolleys based on Swagger
   description: This document shows the endpoints for add, modify or delete tablet trolleys data
-  version: 1.0.0
+  version: 1.1.0
   contact:
     name: Manuel Canio Gil
     url: https://github.com/manuel-canio-gil-291
@@ -111,7 +111,7 @@ paths:
         required: true
         type: integer
         format: int32
-    put:
+    post:
       operationId: updateTabletTrolleyData
       responses:
         200:
@@ -131,7 +131,7 @@ paths:
         required: true
         type: integer
         format: int64
-    delete:
+    get:
       operationId: deleteTabletTrolleyData
       responses:
         200:

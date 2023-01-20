@@ -1,3 +1,10 @@
+/**
+ * ------------------------------------------------------
+ * | WARNING!!!                                         |
+ * | This is a stable version of the code application.  |
+ * | Please, don't modify!                              |
+ * ------------------------------------------------------
+ */
 package es.iesjandula.spring_tr18.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +25,7 @@ import es.iesjandula.spring_tr18.repositories.IReservaCarritoTabletsRepository;
 /**
  * This is a controller which you can reserve a classroom, a tablet trolley and/or a PC trolley
  * @author Manuel Canio Gil
- * @version 1.0.0
+ * @version 1.1.0
  */
 @Controller
 @RequestMapping(value = "/reservas")

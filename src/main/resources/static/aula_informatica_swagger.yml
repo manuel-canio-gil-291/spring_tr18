@@ -2,7 +2,7 @@ swagger: '2.0'
 host: localhost:8081
 basePath: /aulas_informatica
 info:
-  version: 1.0.0
+  version: 1.1.0
   title: TIC classroom based on Swagger
   description: This document shows the endpoints for add, modify or delete TIC classrooms data
   contact:
@@ -95,7 +95,7 @@ paths:
           schema:
             $ref: '#/definitions/TIC_classroom_error'
   /actualizar_aula/{id}:
-    put:
+    post:
       parameters:
         - name: id
           in: path
@@ -125,7 +125,7 @@ paths:
           schema:
             $ref: '#/definitions/TIC_classroom_error'
   /quitar_aula/{id}:
-    delete:
+    get:
       parameters:
         - name: id
           in: path

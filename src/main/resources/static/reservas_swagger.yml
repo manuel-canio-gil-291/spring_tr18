@@ -2,7 +2,7 @@ swagger: '2.0'
 host: localhost:8081
 basePath: /reservas
 info:
-  version: 1.0.0
+  version: 1.1.0
   title: Reservation based on Swagger
   description: This document shows the endpoints for add, modify or delete a reservation
   contact:
@@ -309,7 +309,7 @@ paths:
         in: path
         required: true
         type: string
-    put:
+    post:
       operationId: updateClassroomReservation
       responses:
         200:
@@ -347,7 +347,7 @@ paths:
         in: header
         required: true
         type: string
-    put:
+    post:
       operationId: updatePCTrolleyReservation
       responses:
         200:
@@ -385,7 +385,7 @@ paths:
         in: header
         required: true
         type: string
-    put:
+    post:
       operationId: updateTabletTrolleyReservation
       responses:
         200:
@@ -404,7 +404,7 @@ paths:
         in: path
         required: true
         type: string
-    delete:
+    get:
       operationId: deleteClassroomReservation
       responses:
         200:
@@ -420,7 +420,7 @@ paths:
         required: true
         type: integer
         format: int64
-    delete:
+    get:
       operationId: deletePCTrolleyReservation
       responses:
         200:
@@ -436,7 +436,7 @@ paths:
         required: true
         type: integer
         format: int64
-    delete:
+    get:
       operationId: deleteTabletTrolleyReservation
       responses:
         200:
