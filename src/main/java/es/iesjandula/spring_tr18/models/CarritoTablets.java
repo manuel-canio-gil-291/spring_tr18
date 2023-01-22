@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 /**
  * This is the table "Tablet trolley"
  * @author Manuel Canio Gil
- * @version 1.1.0
+ * @version 1.1.1
  */
 @Entity
 @Table(name = "carritos_tablets")

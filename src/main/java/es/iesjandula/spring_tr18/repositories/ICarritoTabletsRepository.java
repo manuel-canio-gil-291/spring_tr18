@@ -14,7 +14,7 @@ import es.iesjandula.spring_tr18.models.CarritoTablets;
 /**
  * This class allows execute the orders of database
  * @author Manuel Canio Gil
- * @version 1.1.0
+ * @version 1.1.1
  */
 @Repository
 public interface ICarritoTabletsRepository extends JpaRepository<CarritoTablets, Long>
