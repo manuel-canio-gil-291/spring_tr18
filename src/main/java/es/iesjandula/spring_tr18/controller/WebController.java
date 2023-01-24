@@ -1,10 +1,3 @@
-/**
- * ------------------------------------------------------
- * | WARNING!!!                                         |
- * | This is a stable version of the code application.  |
- * | Please, don't modify!                              |
- * ------------------------------------------------------
- */
 package es.iesjandula.spring_tr18.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import es.iesjandula.spring_tr18.errors.ApplicationError;
 import es.iesjandula.spring_tr18.models.ReservaAula;
 import es.iesjandula.spring_tr18.models.ReservaCarritoPCs;
 import es.iesjandula.spring_tr18.models.ReservaCarritoTablets;
@@ -142,11 +136,12 @@ public class WebController
      * This URL is a form which you can update the reserve classroom passing the date
      * @param model
      * @return the HTML web page of reserve classroom form with data
+     * @throws ApplicationError
      */
     @RequestMapping(value = "/formulario_actualizar_reserva_aula/{fecha}", method = RequestMethod.GET)
-    public String formularioActualizarReservaAula(@PathVariable("fecha") String fecha, Model model)
+    public String formularioActualizarReservaAula(@PathVariable("fecha") String fecha, Model model) throws ApplicationError
     {
-        ReservaAula reservaAula = reservaAulaRepository.findById(fecha).orElseThrow(() -> new IllegalArgumentException("La fecha de reserva "+fecha+" no es valida"));
+        ReservaAula reservaAula = reservaAulaRepository.findById(fecha).orElseThrow(() -> new ApplicationError("La fecha de reserva "+fecha+" no es valida"));
 
         model.addAttribute("reserva_aula", reservaAula);
 
@@ -156,11 +151,12 @@ public class WebController
      * This URL is a form which you can update the reserve tablet trolley passing the id
      * @param model
      * @return the HTML web page of reserve tablet trolley form with data
+     * @throws ApplicationError
      */
     @RequestMapping(value = "/formulario_actualizar_reserva_carrito_tablets/{id}", method = RequestMethod.GET)
-    public String formularioActualizarReservaCarritoTablets(@PathVariable("id") Long id, Model model)
+    public String formularioActualizarReservaCarritoTablets(@PathVariable("id") Long id, Model model) throws ApplicationError
     {
-        ReservaCarritoTablets reservaCarritoTablets = reservaCarritoTabletsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No se pudo encontrar la reserva del carrito de tablets numero "+id));
+        ReservaCarritoTablets reservaCarritoTablets = reservaCarritoTabletsRepository.findById(id).orElseThrow(() -> new ApplicationError("No se pudo encontrar la reserva del carrito de tablets numero "+id));
 
         model.addAttribute("reserva_carrito_tablets", reservaCarritoTablets);
 
@@ -170,11 +166,12 @@ public class WebController
      * This URL is a form which you can update the reserve classroom passing the id
      * @param model
      * @return the HTML web page of reserve classroom form with data
+     * @throws ApplicationError
      */
     @RequestMapping(value = "/formulario_actualizar_reserva_carrito_pcs/{id}", method = RequestMethod.GET)
-    public String formularioActualizarReservaCarritoPCs(@PathVariable("id") Long id, Model model)
+    public String formularioActualizarReservaCarritoPCs(@PathVariable("id") Long id, Model model) throws ApplicationError
     {
-        ReservaCarritoPCs reservaCarritoPCs = reservaCarritoPCsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No se pudo encontrar la reserva del carrito de ordenadores numero "+id));
+        ReservaCarritoPCs reservaCarritoPCs = reservaCarritoPCsRepository.findById(id).orElseThrow(() -> new ApplicationError("No se pudo encontrar la reserva del carrito de ordenadores numero "+id));
 
         model.addAttribute("reserva_carrito_pcs", reservaCarritoPCs);
 
@@ -244,11 +241,12 @@ public class WebController
      * This URL delete the reserve classroom in the database passing the date
      * @param model
      * @return redirection of the main page
+     * @throws ApplicationError
      */
     @RequestMapping(value = "/anular_reserva_aula/{fecha}", method = RequestMethod.GET)
-    public String anularReservaAula(@PathVariable("fecha") String fecha, Model model)
+    public String anularReservaAula(@PathVariable("fecha") String fecha, Model model) throws ApplicationError
     {
-        ReservaAula reservaAula = reservaAulaRepository.findById(fecha).orElseThrow(() -> new IllegalArgumentException("La fecha de reserva "+fecha+" no es valida"));
+        ReservaAula reservaAula = reservaAulaRepository.findById(fecha).orElseThrow(() -> new ApplicationError("La fecha de reserva "+fecha+" no es valida"));
 
         reservaAulaRepository.delete(reservaAula);
 
@@ -258,11 +256,12 @@ public class WebController
      * This URL delete the reserve tablet trolley in the database passing the id
      * @param model
      * @return redirection of the main page
+     * @throws ApplicationError
      */
     @RequestMapping(value = "/anular_reserva_carrito_tablets/{id}", method = RequestMethod.GET)
-    public String anularReservaCarritoTablets(@PathVariable("id") Long id, Model model)
+    public String anularReservaCarritoTablets(@PathVariable("id") Long id, Model model) throws ApplicationError
     {
-        ReservaCarritoTablets reservaCarritoTablets = reservaCarritoTabletsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No se pudo encontrar la reserva del carrito de tablets numero "+id));
+        ReservaCarritoTablets reservaCarritoTablets = reservaCarritoTabletsRepository.findById(id).orElseThrow(() -> new ApplicationError("No se pudo encontrar la reserva del carrito de tablets numero "+id));
 
         reservaCarritoTabletsRepository.delete(reservaCarritoTablets);
 
@@ -272,11 +271,12 @@ public class WebController
      * This URL delete the reserve PC trolley in the database passing the id
      * @param model
      * @return redirection of the main page
+     * @throws ApplicationError
      */
     @RequestMapping(value = "/anular_reserva_carrito_pcs/{id}", method = RequestMethod.GET)
-    public String anularReservaCarritoPCs(@PathVariable("id") Long id, Model model)
+    public String anularReservaCarritoPCs(@PathVariable("id") Long id, Model model) throws ApplicationError
     {
-        ReservaCarritoPCs reservaCarritoPCs = reservaCarritoPCsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No se pudo encontrar la reserva del carrito de ordenadores numero "+id));
+        ReservaCarritoPCs reservaCarritoPCs = reservaCarritoPCsRepository.findById(id).orElseThrow(() -> new ApplicationError("No se pudo encontrar la reserva del carrito de ordenadores numero "+id));
 
         reservaCarritoPCsRepository.delete(reservaCarritoPCs);
 

@@ -1,10 +1,3 @@
-/**
- * ------------------------------------------------------
- * | WARNING!!!                                         |
- * | This is a stable version of the code application.  |
- * | Please, don't modify!                              |
- * ------------------------------------------------------
- */
 package es.iesjandula.spring_tr18.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import es.iesjandula.spring_tr18.errors.ApplicationError;
 import es.iesjandula.spring_tr18.models.AulaInformatica;
 import es.iesjandula.spring_tr18.repositories.IAulaInformaticaRepository;
 /**
@@ -74,11 +68,12 @@ public class AulaInformaticaController
      * This URL is a form which you can update the classroom data passing the id
      * @param model
      * @return the HTML web page classroom data form 
+     * @throws ApplicationError
      */
     @RequestMapping(value = "/ver_formulario_actualizar_aula/{id}", method = RequestMethod.GET)
-    public String formularioActualizarAula(@PathVariable("id") Long id, Model model)
+    public String formularioActualizarAula(@PathVariable("id") Long id, Model model) throws ApplicationError
     {
-        AulaInformatica aulaInformatica = aulaInformaticaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID de aula de informatica "+id+" no valido"));
+        AulaInformatica aulaInformatica = aulaInformaticaRepository.findById(id).orElseThrow(() -> new ApplicationError("ID de aula de informatica "+id+" no valido"));
 
         model.addAttribute("aula_informatica", aulaInformatica);
 
@@ -107,11 +102,12 @@ public class AulaInformaticaController
      * This URL delete the classroom data in the table passing the id
      * @param model
      * @return redirection of the main page
+     * @throws ApplicationError
      */
     @RequestMapping(value = "/quitar_aula/{id}", method = RequestMethod.GET)
-    public String quitarAula(@PathVariable("id") Long id, Model model)
+    public String quitarAula(@PathVariable("id") Long id, Model model) throws ApplicationError
     {
-        AulaInformatica aulaInformatica = aulaInformaticaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID de aula de informatica "+id+" no valido"));
+        AulaInformatica aulaInformatica = aulaInformaticaRepository.findById(id).orElseThrow(() -> new ApplicationError("ID de aula de informatica "+id+" no valido"));
 
         aulaInformaticaRepository.delete(aulaInformatica);
 

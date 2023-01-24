@@ -1,10 +1,3 @@
-/**
- * ------------------------------------------------------
- * | WARNING!!!                                         |
- * | This is a stable version of the code application.  |
- * | Please, don't modify!                              |
- * ------------------------------------------------------
- */
 package es.iesjandula.spring_tr18.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import es.iesjandula.spring_tr18.errors.ApplicationError;
 import es.iesjandula.spring_tr18.models.Profesor;
 import es.iesjandula.spring_tr18.repositories.IProfesorRepository;
 /**
@@ -74,11 +68,12 @@ public class ProfesorController
      * This URL is a form which you can modify the teacher's data passing the id
      * @param model
      * @return the HTML web page teacher's data form
+     * @throws ApplicationError
      */
     @RequestMapping(value = "/ver_formulario_actualizar_profesor/{id}", method = RequestMethod.GET)
-    public String formularioActualizarProfesor(@PathVariable("id") Long id, Model model)
+    public String formularioActualizarProfesor(@PathVariable("id") Long id, Model model) throws ApplicationError
     {
-        Profesor profesor = profesorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("El Id del profesor "+id+" no es valido"));
+        Profesor profesor = profesorRepository.findById(id).orElseThrow(() -> new ApplicationError("El Id del profesor "+id+" no es valido"));
 
         model.addAttribute("profesor", profesor);
 
@@ -107,11 +102,12 @@ public class ProfesorController
      * This URL delete the teacher's data in the table
      * @param model
      * @return redirection of the main page
+     * @throws ApplicationError
      */
     @RequestMapping(value = "/quitar_profesor/{id}", method = RequestMethod.GET)
-    public String quitarProfesor(@PathVariable("id") Long id, Model model)
+    public String quitarProfesor(@PathVariable("id") Long id, Model model) throws ApplicationError
     {
-        Profesor profesor = profesorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("El Id del profesor "+id+" no es valido"));
+        Profesor profesor = profesorRepository.findById(id).orElseThrow(() -> new ApplicationError("El Id del profesor "+id+" no es valido"));
 
         profesorRepository.delete(profesor);
 

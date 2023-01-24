@@ -1,10 +1,3 @@
-/**
- * ------------------------------------------------------
- * | WARNING!!!                                         |
- * | This is a stable version of the code application.  |
- * | Please, don't modify!                              |
- * ------------------------------------------------------
- */
 package es.iesjandula.spring_tr18.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import es.iesjandula.spring_tr18.errors.ApplicationError;
 import es.iesjandula.spring_tr18.models.CarritoTablets;
 import es.iesjandula.spring_tr18.repositories.ICarritoTabletsRepository;
 /**
@@ -74,11 +68,12 @@ public class CarritoTabletsController
      * This URL is a form which you can update the tablet trolley data passing the id
      * @param model
      * @return the HTML web page tablet trolley data form 
+     * @throws ApplicationError
      */
     @RequestMapping(value = "/ver_formulario_actualizar_carrito_tablets/{id}", method = RequestMethod.GET)
-    public String formularioActualizarCarritoTablets(@PathVariable("id") Long id, Model model)
+    public String formularioActualizarCarritoTablets(@PathVariable("id") Long id, Model model) throws ApplicationError
     {
-        CarritoTablets carritoTablets = carritoTabletsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No se ha encontrado el ID del carrito "+id));
+        CarritoTablets carritoTablets = carritoTabletsRepository.findById(id).orElseThrow(() -> new ApplicationError("No se ha encontrado el ID del carrito "+id));
 
         model.addAttribute("carrito_tablets", carritoTablets);
 
@@ -108,11 +103,12 @@ public class CarritoTabletsController
      * This URL delete the tablet trolley data in the table
      * @param model
      * @return redirection of the main page
+     * @throws ApplicationError
      */
     @RequestMapping(value = "/quitar_carrito_tablets/{id}", method = RequestMethod.GET)
-    public String quitarCarritoTablets(@PathVariable("id") Long id, Model model)
+    public String quitarCarritoTablets(@PathVariable("id") Long id, Model model) throws ApplicationError
     {
-        CarritoTablets carritoTablets = carritoTabletsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No se ha encontrado el ID del carrito "+id));
+        CarritoTablets carritoTablets = carritoTabletsRepository.findById(id).orElseThrow(() -> new ApplicationError("No se ha encontrado el ID del carrito "+id));
 
         carritoTabletsRepository.delete(carritoTablets);
 

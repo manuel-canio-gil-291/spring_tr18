@@ -1,10 +1,3 @@
-/**
- * ------------------------------------------------------
- * | WARNING!!!                                         |
- * | This is a stable version of the code application.  |
- * | Please, don't modify!                              |
- * ------------------------------------------------------
- */
 package es.iesjandula.spring_tr18.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import es.iesjandula.spring_tr18.errors.ApplicationError;
 import es.iesjandula.spring_tr18.models.CarritoPCs;
 import es.iesjandula.spring_tr18.repositories.ICarritoPCsRepository;
 /**
@@ -74,11 +68,12 @@ public class CarritoPCsController
      * This URL is a form which you can update the PC trolley data passing the id
      * @param model
      * @return the HTML web page PC trolley data form 
+     * @throws ApplicationError
      */
     @RequestMapping(value = "/ver_formulario_actualizar_carrito_pcs/{id}", method = RequestMethod.GET)
-    public String formularioActualizarCarritoPCs(@PathVariable("id") Long id, Model model)
+    public String formularioActualizarCarritoPCs(@PathVariable("id") Long id, Model model) throws ApplicationError
     {
-        CarritoPCs carritoPCs = carritoPCsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No se ha encontrado el ID del carrito "+id));
+        CarritoPCs carritoPCs = carritoPCsRepository.findById(id).orElseThrow(() -> new ApplicationError("No se ha encontrado el ID del carrito "+id));
 
         model.addAttribute("carrito_pcs", carritoPCs);
 
@@ -107,11 +102,12 @@ public class CarritoPCsController
      * This URL delete the PC trolley data in the table
      * @param model
      * @return redirection of the main page
+     * @throws ApplicationError
      */
     @RequestMapping(value = "/quitar_carrito_pcs/{id}", method = RequestMethod.GET)
-    public String quitarCarritoPCs(@PathVariable("id") Long id, Model model)
+    public String quitarCarritoPCs(@PathVariable("id") Long id, Model model) throws ApplicationError
     {
-        CarritoPCs carritoPCs = carritoPCsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No se ha encontrado el ID del carrito "+id));
+        CarritoPCs carritoPCs = carritoPCsRepository.findById(id).orElseThrow(() -> new ApplicationError("No se ha encontrado el ID del carrito "+id));
 
         carritoPCsRepository.delete(carritoPCs);
 
