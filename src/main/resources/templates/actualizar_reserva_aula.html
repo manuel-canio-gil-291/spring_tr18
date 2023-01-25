@@ -16,8 +16,9 @@
 </head>
 <body>
     <h3 class="text-center pt-2 pb-2 bg-info text-wrap">Actualizar la reserva de aula</h3>
-    <form th:action="@{/reservas/actualizar_reserva_aula/{fecha}(fecha=${reserva_aula.fecha})}" th:object="${reserva_aula}" method="post">
+    <form th:action="@{/reservas/actualizar_reserva_aula/{id}(id=${reserva_aula.id})}" th:object="${reserva_aula}" method="post">
         <div class="row g-3 align-items-center">
+            <input type="hidden" id="id" th:field="*{id}">
             <div class="col-auto">
                 <label for="id_profesor" class="col-form-label">Id del profesor</label>
             </div>

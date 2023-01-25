@@ -1,16 +1,11 @@
-/**
- * ------------------------------------------------------
- * | WARNING!!!                                         |
- * | This is a stable version of the code application.  |
- * | Please, don't modify!                              |
- * ------------------------------------------------------
- */
 package es.iesjandula.spring_tr18.models;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -22,7 +17,10 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "reservas_aulas")
 public class ReservaAula 
-{   
+{  
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; 
     /**
      * The teacher ID
      */
@@ -36,7 +34,6 @@ public class ReservaAula
     /**
      * The reserve date
      */
-    @Id
     @Column(name = "fecha", nullable = false)
     private String fecha;
     /**
@@ -48,14 +45,31 @@ public class ReservaAula
     }
     /**
      * Constructor with variables
+     * @param id
      * @param idProfesor
      * @param idAula
      * @param fecha
      */
-    public ReservaAula(Profesor idProfesor, AulaInformatica idAula, String fecha) {
+    public ReservaAula(Long id, Profesor idProfesor, AulaInformatica idAula, String fecha) {
+        this.id = id;
         this.idProfesor = idProfesor;
         this.idAula = idAula;
         this.fecha = fecha;
+    }
+    /**
+     * @return the id of the TIC classroom reservation
+     */
+    public Long getId()
+    {
+        return id;
+    }
+    /**
+     * Set the id of the TIC classroom reservation
+     * @param id
+     */
+    public void setId(Long id)
+    {
+        this.id = id;
     }
     /**
      * @return the teacher ID

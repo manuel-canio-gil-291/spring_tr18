@@ -138,10 +138,10 @@ public class WebController
      * @return the HTML web page of reserve classroom form with data
      * @throws ApplicationError
      */
-    @RequestMapping(value = "/formulario_actualizar_reserva_aula/{fecha}", method = RequestMethod.GET)
-    public String formularioActualizarReservaAula(@PathVariable("fecha") String fecha, Model model) throws ApplicationError
+    @RequestMapping(value = "/formulario_actualizar_reserva_aula/{id}", method = RequestMethod.GET)
+    public String formularioActualizarReservaAula(@PathVariable("id") Long id, Model model) throws ApplicationError
     {
-        ReservaAula reservaAula = reservaAulaRepository.findById(fecha).orElseThrow(() -> new ApplicationError("La fecha de reserva "+fecha+" no es valida"));
+        ReservaAula reservaAula = reservaAulaRepository.findById(id).orElseThrow(() -> new ApplicationError("El id de la reserva del aula "+id+" no es valida"));
 
         model.addAttribute("reserva_aula", reservaAula);
 
@@ -182,13 +182,13 @@ public class WebController
      * @param model
      * @return redirection of the main page
      */
-    @RequestMapping(value = "/reservas/actualizar_reserva_aula/{fecha}", method = RequestMethod.POST)
-    public String actualizarReservaAula(@PathVariable("fecha") String fecha, ReservaAula reservaAula,
+    @RequestMapping(value = "/actualizar_reserva_aula/{id}", method = RequestMethod.POST)
+    public String actualizarReservaAula(@PathVariable("id") Long id, ReservaAula reservaAula,
     BindingResult result, Model model)
     {
         if(result.hasErrors())
         {
-            reservaAula.setFecha(fecha);
+            reservaAula.setId(id);
 
             return "actualizar_reserva_carrito_pcs";
         }
@@ -243,10 +243,10 @@ public class WebController
      * @return redirection of the main page
      * @throws ApplicationError
      */
-    @RequestMapping(value = "/anular_reserva_aula/{fecha}", method = RequestMethod.GET)
-    public String anularReservaAula(@PathVariable("fecha") String fecha, Model model) throws ApplicationError
+    @RequestMapping(value = "/anular_reserva_aula/{id}", method = RequestMethod.GET)
+    public String anularReservaAula(@PathVariable("id") Long id, Model model) throws ApplicationError
     {
-        ReservaAula reservaAula = reservaAulaRepository.findById(fecha).orElseThrow(() -> new ApplicationError("La fecha de reserva "+fecha+" no es valida"));
+        ReservaAula reservaAula = reservaAulaRepository.findById(id).orElseThrow(() -> new ApplicationError("El id de la reserva del aula "+id+" no es valida"));
 
         reservaAulaRepository.delete(reservaAula);
 

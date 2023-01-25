@@ -31,6 +31,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th># Profesor</th>
                     <th># Aula</th>
                     <th>Fecha de reserva</th>
@@ -39,15 +40,16 @@
             </thead>
             <tbody>
                 <tr th:each="reserva_aula: ${lista_reservas_aulas}">
+                    <td th:text="${reserva_aula.id}"></td>
                     <td th:text="${reserva_aula.idProfesor}"></td>
                     <td th:text="${reserva_aula.idAula}"></td>
                     <td th:text="${reserva_aula.fecha}"></td>
                     <td>
-                       <a th:href="@{/reservas/formulario_actualizar_reserva_aula/{fecha}(fecha=${reserva_aula.fecha})}"
+                       <a th:href="@{/reservas/formulario_actualizar_reserva_aula/{id}(id=${reserva_aula.id})}"
                        class="btn btn-primary">Actualizar reserva</a> 
                     </td>
                     <td>
-                        <a th:href="@{/reservas/anular_reserva_aula/{fecha}(fecha=${reserva_aula.fecha})}"
+                        <a th:href="@{/reservas/anular_reserva_aula/{id}(id=${reserva_aula.id})}"
                         class="btn btn-danger" onclick="reservaAulaAnulada()">Anular reserva</a>
                     </td>
                 </tr>

@@ -17,7 +17,7 @@ import es.iesjandula.spring_tr18.models.ReservaAula;
  * @version 1.1.1
  */
 @Repository
-public interface IReservaAulaRepository extends JpaRepository<ReservaAula, String>
+public interface IReservaAulaRepository extends JpaRepository<ReservaAula, Long>
 {
     
 }
