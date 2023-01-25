@@ -12,13 +12,33 @@
         {
             window.alert("Se ha actualizado la reserva del aula");
         }
+        function mostrarId()
+        {
+            div = document.getElementById('flotante');
+            div.style.display = '';
+        }
+        function ocultarId()
+        {
+            div = document.getElementById('flotante');
+            div.style.display = 'none';
+        }
     </script>
 </head>
 <body>
     <h3 class="text-center pt-2 pb-2 bg-info text-wrap">Actualizar la reserva de aula</h3>
     <form th:action="@{/reservas/actualizar_reserva_aula/{id}(id=${reserva_aula.id})}" th:object="${reserva_aula}" method="post">
+        <div id="flotante" style="display: none;">
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="id" class="col-form-label">Id de la reserva del aula</label>
+                </div>
+                <div class="col-auto">
+                    <input type="number" id="id" class="form-control" th:field="*{id}" disabled>
+                </div>
+            </div>
+            <div id="hide"><a href="javascript:ocultarId();" class="btn btn-secondary">Ocultar Id</a></div>
+        </div>
         <div class="row g-3 align-items-center">
-            <input type="hidden" id="id" th:field="*{id}">
             <div class="col-auto">
                 <label for="id_profesor" class="col-form-label">Id del profesor</label>
             </div>
@@ -46,6 +66,7 @@
         </div>
         <br>
         <button type="submit" class="btn btn-primary" onclick="reservaAulaActualizada()">Guardar reserva</button>
+        <a href="javascript:mostrarId();" class="btn btn-secondary">Mostrar Id</a>
     </form>
     <br>
     <a th:href="@{/reservas/}" class="text-decoration-none">Atr&aacute;s</a>
