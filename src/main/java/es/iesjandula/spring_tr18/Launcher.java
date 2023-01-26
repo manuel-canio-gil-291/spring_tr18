@@ -1,3 +1,10 @@
+/**
+ * ------------------------------------------------------
+ * | WARNING!!!                                         |
+ * | This is a stable version of the code application.  |
+ * | Please, don't modify!                              |
+ * ------------------------------------------------------
+ */
 package es.iesjandula.spring_tr18;
 
 import org.springframework.boot.SpringApplication;
@@ -9,6 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import es.iesjandula.spring_tr18.controller.AulaInformaticaController;
 import es.iesjandula.spring_tr18.controller.CarritoPCsController;
 import es.iesjandula.spring_tr18.controller.CarritoTabletsController;
+import es.iesjandula.spring_tr18.controller.IndexController;
 import es.iesjandula.spring_tr18.controller.ProfesorController;
 import es.iesjandula.spring_tr18.controller.WebController;
 
@@ -23,7 +31,8 @@ import es.iesjandula.spring_tr18.controller.WebController;
 	ProfesorController.class,
 	CarritoTabletsController.class,
 	CarritoPCsController.class,
-	AulaInformaticaController.class
+	AulaInformaticaController.class,
+	IndexController.class
 })
 public class Launcher {
 	/**

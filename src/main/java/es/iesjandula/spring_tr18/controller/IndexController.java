@@ -1,3 +1,10 @@
+/**
+ * ------------------------------------------------------
+ * | WARNING!!!                                         |
+ * | This is a stable version of the code application.  |
+ * | Please, don't modify!                              |
+ * ------------------------------------------------------
+ */
 package es.iesjandula.spring_tr18.controller;
 
 import org.springframework.stereotype.Controller;
@@ -7,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * This is a controller that shows the index page
  * @author Manuel Canio Gil
- * @version 1.1.1
+ * @version 1.2.0
  */
 @Controller
 @RequestMapping(value = "/inicio")

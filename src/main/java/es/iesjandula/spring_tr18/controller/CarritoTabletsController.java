@@ -1,3 +1,10 @@
+/**
+ * ------------------------------------------------------
+ * | WARNING!!!                                         |
+ * | This is a stable version of the code application.  |
+ * | Please, don't modify!                              |
+ * ------------------------------------------------------
+ */
 package es.iesjandula.spring_tr18.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +22,7 @@ import es.iesjandula.spring_tr18.repositories.ICarritoTabletsRepository;
 /**
  * This is a controller which you can add, modify or delete the tablet trolley in the table
  * @author Manuel Canio Gil
- * @version 1.1.1
+ * @version 1.2.0
  */
 @Controller
 @RequestMapping(value = "/carritos_tablets")

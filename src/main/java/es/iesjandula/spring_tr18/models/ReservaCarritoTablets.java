@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 /**
  * This is the table "Reserve tablet trolley"
  * @author Manuel Canio Gil
- * @version 1.1.1
+ * @version 1.2.0
  */
 @Entity
 @Table(name = "reservas_carritos_tablets")
