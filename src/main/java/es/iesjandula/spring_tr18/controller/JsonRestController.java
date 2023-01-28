@@ -6,9 +6,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import es.iesjandula.spring_tr18.errors.ApplicationError;
 import es.iesjandula.spring_tr18.models.Profesor;
@@ -16,9 +16,9 @@ import es.iesjandula.spring_tr18.repositories.IProfesorRepository;
 import es.iesjandula.spring_tr18.utils.Constants;
 import es.iesjandula.spring_tr18.utils.JsonUtils;
 
-@Controller
+@RestController
 @RequestMapping(value = "/json_code", produces = {"application/json"})
-public class JsonController 
+public class JsonRestController 
 {
     private static final Logger LOGGER = LogManager.getLogger();
 
