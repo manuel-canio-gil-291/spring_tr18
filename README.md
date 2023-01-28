@@ -50,6 +50,9 @@ Once you have finished reviewing everything, you can now run the application.
 - Spring boot with Thymeleaf
 - Spring boot test
 - MySQL Connector for Java
+- FasterXML Jackson
+- Log4 Java core
+- Log4 Java API
 
 ### About this app ###
 
