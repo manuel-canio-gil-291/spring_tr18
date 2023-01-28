@@ -56,7 +56,7 @@ public class JsonRestController
         {
             ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_OBJECT_TO_JSON, exception);
             LOGGER.error(applicationError);
-            return ResponseEntity.internalServerError() .body(applicationError);
+            return ResponseEntity.internalServerError().body(applicationError);
         }
     }
 
