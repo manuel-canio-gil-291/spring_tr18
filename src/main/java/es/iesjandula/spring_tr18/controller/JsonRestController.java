@@ -11,7 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.iesjandula.spring_tr18.errors.ApplicationError;
+import es.iesjandula.spring_tr18.models.AulaInformatica;
+import es.iesjandula.spring_tr18.models.CarritoPCs;
+import es.iesjandula.spring_tr18.models.CarritoTablets;
 import es.iesjandula.spring_tr18.models.Profesor;
+import es.iesjandula.spring_tr18.repositories.IAulaInformaticaRepository;
+import es.iesjandula.spring_tr18.repositories.ICarritoPCsRepository;
+import es.iesjandula.spring_tr18.repositories.ICarritoTabletsRepository;
 import es.iesjandula.spring_tr18.repositories.IProfesorRepository;
 import es.iesjandula.spring_tr18.utils.Constants;
 import es.iesjandula.spring_tr18.utils.JsonUtils;
@@ -24,6 +30,15 @@ public class JsonRestController
 
     @Autowired
     public IProfesorRepository profesorRepository;
+
+    @Autowired
+    public IAulaInformaticaRepository aulaInformaticaRepository;
+
+    @Autowired
+    public ICarritoPCsRepository carritoPCsRepository;
+
+    @Autowired
+    public ICarritoTabletsRepository carritoTabletsRepository;
 
     @RequestMapping(value = "/profesores", method = RequestMethod.GET)
     public ResponseEntity<?> getJsonProfesores()
@@ -41,7 +56,67 @@ public class JsonRestController
         {
             ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_OBJECT_TO_JSON, exception);
             LOGGER.error(applicationError);
-            return ResponseEntity.status(500).body(applicationError);
+            return ResponseEntity.internalServerError() .body(applicationError);
+        }
+    }
+
+    @RequestMapping(value = "/aulas_informatica", method = RequestMethod.GET)
+    public ResponseEntity<?> getJsonAulasInformatica()
+    {
+        try 
+        {
+            String resultJson = "";
+            List<AulaInformatica> aulasInformatica = aulaInformaticaRepository.findAll();
+            JsonUtils jsonUtils = new JsonUtils();
+            resultJson = jsonUtils.writeObjectToJsonAsPretty(aulasInformatica);
+
+            return ResponseEntity.ok().body(resultJson);
+        } 
+        catch (Exception exception) 
+        {
+            ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_OBJECT_TO_JSON, exception);
+            LOGGER.error(applicationError);
+            return ResponseEntity.internalServerError().body(applicationError);
+        }
+    }
+
+    @RequestMapping(value = "/carritos_pcs", method = RequestMethod.GET)
+    public ResponseEntity<?> getJsonCarritosPCs()
+    {
+        try 
+        {
+            String resultJson = "";
+            List<CarritoPCs> carritosPCs = carritoPCsRepository.findAll();
+            JsonUtils jsonUtils = new JsonUtils();
+            resultJson = jsonUtils.writeObjectToJsonAsPretty(carritosPCs);
+
+            return ResponseEntity.ok().body(resultJson);
+        } 
+        catch (Exception exception) 
+        {
+            ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_OBJECT_TO_JSON, exception);
+            LOGGER.error(applicationError);
+            return ResponseEntity.internalServerError().body(applicationError);
+        }
+    }
+
+    @RequestMapping(value = "/carritos_tablets", method = RequestMethod.GET)
+    public ResponseEntity<?> getJsonCarritosTablets()
+    {
+        try 
+        {
+            String resultJson = "";
+            List<CarritoTablets> carritosTablets = carritoTabletsRepository.findAll();
+            JsonUtils jsonUtils = new JsonUtils();
+            resultJson = jsonUtils.writeObjectToJsonAsPretty(carritosTablets);
+
+            return ResponseEntity.ok().body(resultJson);
+        } 
+        catch (Exception exception) 
+        {
+            ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_OBJECT_TO_JSON, exception);
+            LOGGER.error(applicationError);
+            return ResponseEntity.internalServerError().body(applicationError);
         }
     }
 }
