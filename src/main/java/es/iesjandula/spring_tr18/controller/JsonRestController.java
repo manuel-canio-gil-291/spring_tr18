@@ -11,14 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.iesjandula.spring_tr18.errors.ApplicationError;
-import es.iesjandula.spring_tr18.models.AulaInformatica;
-import es.iesjandula.spring_tr18.models.CarritoPCs;
-import es.iesjandula.spring_tr18.models.CarritoTablets;
-import es.iesjandula.spring_tr18.models.Profesor;
-import es.iesjandula.spring_tr18.repositories.IAulaInformaticaRepository;
-import es.iesjandula.spring_tr18.repositories.ICarritoPCsRepository;
-import es.iesjandula.spring_tr18.repositories.ICarritoTabletsRepository;
-import es.iesjandula.spring_tr18.repositories.IProfesorRepository;
+import es.iesjandula.spring_tr18.models.*;
+import es.iesjandula.spring_tr18.repositories.*;
 import es.iesjandula.spring_tr18.utils.Constants;
 import es.iesjandula.spring_tr18.utils.JsonUtils;
 
@@ -39,6 +33,15 @@ public class JsonRestController
 
     @Autowired
     public ICarritoTabletsRepository carritoTabletsRepository;
+
+    @Autowired
+    public IReservaAulaRepository reservaAulaRepository;
+
+    @Autowired
+    public IReservaCarritoPCsRepository reservaCarritoPCsRepository;
+
+    @Autowired
+    public IReservaCarritoTabletsRepository reservaCarritoTabletsRepository;
 
     @RequestMapping(value = "/profesores", method = RequestMethod.GET)
     public ResponseEntity<?> getJsonProfesores()
@@ -109,6 +112,66 @@ public class JsonRestController
             List<CarritoTablets> carritosTablets = carritoTabletsRepository.findAll();
             JsonUtils jsonUtils = new JsonUtils();
             resultJson = jsonUtils.writeObjectToJsonAsPretty(carritosTablets);
+
+            return ResponseEntity.ok().body(resultJson);
+        } 
+        catch (Exception exception) 
+        {
+            ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_OBJECT_TO_JSON, exception);
+            LOGGER.error(applicationError);
+            return ResponseEntity.internalServerError().body(applicationError);
+        }
+    }
+
+    @RequestMapping(value = "/reservas_aulas", method = RequestMethod.GET)
+    public ResponseEntity<?> getJsonReservasAulasInformatica()
+    {
+        try 
+        {
+            String resultJson = "";
+            List<ReservaAula> reservasAulas = reservaAulaRepository.findAll();
+            JsonUtils jsonUtils = new JsonUtils();
+            resultJson = jsonUtils.writeObjectToJsonAsPretty(reservasAulas);
+
+            return ResponseEntity.ok().body(resultJson);
+        } 
+        catch (Exception exception) 
+        {
+            ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_OBJECT_TO_JSON, exception);
+            LOGGER.error(applicationError);
+            return ResponseEntity.internalServerError().body(applicationError);
+        }
+    }
+
+    @RequestMapping(value = "/reservas_carritos_pcs", method = RequestMethod.GET)
+    public ResponseEntity<?> getJsonReservasCarritosPCs()
+    {
+        try 
+        {
+            String resultJson = "";
+            List<ReservaCarritoPCs> reservasCarritosPCs = reservaCarritoPCsRepository.findAll();
+            JsonUtils jsonUtils = new JsonUtils();
+            resultJson = jsonUtils.writeObjectToJsonAsPretty(reservasCarritosPCs);
+
+            return ResponseEntity.ok().body(resultJson);
+        } 
+        catch (Exception exception) 
+        {
+            ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_OBJECT_TO_JSON, exception);
+            LOGGER.error(applicationError);
+            return ResponseEntity.internalServerError().body(applicationError);
+        }
+    }
+
+    @RequestMapping(value = "/reservas_carritos_tablets", method = RequestMethod.GET)
+    public ResponseEntity<?> getJsonReservasCarritosTablets()
+    {
+        try 
+        {
+            String resultJson = "";
+            List<ReservaCarritoTablets> reservasCarritosTablets = reservaCarritoTabletsRepository.findAll();
+            JsonUtils jsonUtils = new JsonUtils();
+            resultJson = jsonUtils.writeObjectToJsonAsPretty(reservasCarritosTablets);
 
             return ResponseEntity.ok().body(resultJson);
         } 
