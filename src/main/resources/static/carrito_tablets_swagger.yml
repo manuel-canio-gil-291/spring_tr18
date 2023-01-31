@@ -156,9 +156,6 @@ definitions:
         type: integer
         format: int32
         description: "The floor that it's located"
-      sistema_operativo:
-        type: string
-        description: "The operating system installed"
   Carrito_tablet_error:
     properties: 
       code:
