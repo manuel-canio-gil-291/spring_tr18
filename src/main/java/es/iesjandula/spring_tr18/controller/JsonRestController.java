@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,6 +57,31 @@ public class JsonRestController
             return ResponseEntity.ok().body(resultJson);
         } 
         catch (Exception exception) 
+        {
+            ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_OBJECT_TO_JSON, exception);
+            LOGGER.error(applicationError);
+            return ResponseEntity.internalServerError().body(applicationError);
+        }
+    }
+
+    @RequestMapping(value = "/profesores/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getJsonProfesor(@PathVariable("id") Long id)
+    {
+        try 
+        {
+            String resultJson = "";
+            Profesor profesor = profesorRepository.findById(id).orElseThrow(() -> new ApplicationError("No se encontro el id del profesor "+id));
+            JsonUtils jsonUtils = new JsonUtils();
+            resultJson = jsonUtils.writeObjectToJsonAsPretty(profesor);
+
+            return ResponseEntity.ok().body(resultJson);
+        } 
+        catch (ApplicationError applicationError) 
+        {
+            LOGGER.warn(applicationError);
+            return ResponseEntity.badRequest().body(applicationError);
+        }
+        catch (Exception exception)
         {
             ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_OBJECT_TO_JSON, exception);
             LOGGER.error(applicationError);
