@@ -109,6 +109,31 @@ public class JsonRestController
         }
     }
 
+    @RequestMapping(value = "/aulas_informatica/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getJsonAulaInformatica(@PathVariable("id") Long id)
+    {
+        try 
+        {
+            String resultJson = "";
+            AulaInformatica aulaInformatica = aulaInformaticaRepository.findById(id).orElseThrow(() -> new ApplicationError("No se encontro el id de la aula de informatica "+id));
+            JsonUtils jsonUtils = new JsonUtils();
+            resultJson = jsonUtils.writeObjectToJsonAsPretty(aulaInformatica);
+
+            return ResponseEntity.ok().body(resultJson);
+        } 
+        catch (ApplicationError applicationError) 
+        {
+            LOGGER.warn(applicationError);
+            return ResponseEntity.badRequest().body(applicationError);
+        }
+        catch (Exception exception)
+        {
+            ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_OBJECT_TO_JSON, exception);
+            LOGGER.error(applicationError);
+            return ResponseEntity.internalServerError().body(applicationError);
+        }
+    }
+
     @RequestMapping(value = "/carritos_pcs", method = RequestMethod.GET)
     public ResponseEntity<?> getJsonCarritosPCs()
     {
@@ -129,6 +154,31 @@ public class JsonRestController
         }
     }
 
+    @RequestMapping(value = "/carritos_pcs/{id}")
+    public ResponseEntity<?> getJsonCarritoPCs(@PathVariable("id") Long id)
+    {
+        try 
+        {
+            String resultJson = "";
+            CarritoPCs carritoPCs = carritoPCsRepository.findById(id).orElseThrow(() -> new ApplicationError("No se encontro el id del carrito de ordenadores "+id));
+            JsonUtils jsonUtils = new JsonUtils();
+            resultJson = jsonUtils.writeObjectToJsonAsPretty(carritoPCs);
+            
+            return ResponseEntity.ok().body(resultJson);
+        } 
+        catch (ApplicationError applicationError) 
+        {
+            LOGGER.warn(applicationError);
+            return ResponseEntity.badRequest().body(applicationError);
+        }
+        catch (Exception exception)
+        {
+            ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_OBJECT_TO_JSON, exception);
+            LOGGER.error(applicationError);
+            return ResponseEntity.internalServerError().body(applicationError);
+        }
+    }
+
     @RequestMapping(value = "/carritos_tablets", method = RequestMethod.GET)
     public ResponseEntity<?> getJsonCarritosTablets()
     {
@@ -142,6 +192,31 @@ public class JsonRestController
             return ResponseEntity.ok().body(resultJson);
         } 
         catch (Exception exception) 
+        {
+            ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_OBJECT_TO_JSON, exception);
+            LOGGER.error(applicationError);
+            return ResponseEntity.internalServerError().body(applicationError);
+        }
+    }
+
+    @RequestMapping(value = "/carritos_tablets/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getJsonCarritoTablets(@PathVariable("id") Long id)
+    {
+        try 
+        {
+            String resultJson = "";
+            CarritoTablets carritoTablets = carritoTabletsRepository.findById(id).orElseThrow(() -> new ApplicationError("No se encontro el id del carrito de tablets "+id));
+            JsonUtils jsonUtils = new JsonUtils();
+            resultJson = jsonUtils.writeObjectToJsonAsPretty(carritoTablets);
+            
+            return ResponseEntity.ok().body(resultJson);
+        } 
+        catch (ApplicationError applicationError) 
+        {
+            LOGGER.warn(applicationError);
+            return ResponseEntity.badRequest().body(applicationError);
+        }
+        catch (Exception exception)
         {
             ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_OBJECT_TO_JSON, exception);
             LOGGER.error(applicationError);
