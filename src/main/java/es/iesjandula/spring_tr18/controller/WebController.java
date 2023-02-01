@@ -7,7 +7,12 @@
  */
 package es.iesjandula.spring_tr18.controller;
 
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,9 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.iesjandula.spring_tr18.errors.ApplicationError;
+import es.iesjandula.spring_tr18.models.AulaInformatica;
 import es.iesjandula.spring_tr18.models.ReservaAula;
 import es.iesjandula.spring_tr18.models.ReservaCarritoPCs;
 import es.iesjandula.spring_tr18.models.ReservaCarritoTablets;
+import es.iesjandula.spring_tr18.repositories.IAulaInformaticaRepository;
 import es.iesjandula.spring_tr18.repositories.IReservaAulaRepository;
 import es.iesjandula.spring_tr18.repositories.IReservaCarritoPCsRepository;
 import es.iesjandula.spring_tr18.repositories.IReservaCarritoTabletsRepository;
@@ -32,6 +39,9 @@ import es.iesjandula.spring_tr18.repositories.IReservaCarritoTabletsRepository;
 @RequestMapping(value = "/reservas")
 public class WebController 
 {
+    private static final Logger LOGGER = LogManager.getLogger();
+    @Autowired
+    public IAulaInformaticaRepository aulaInformaticaRepository;
     /**
      * Repository of the table "Reserve trolley tablet"
      */
@@ -109,9 +119,31 @@ public class WebController
      * @return redirection of the main page
      */
     @RequestMapping(value = "/guardar_reserva_aula", method = RequestMethod.POST)
-    public String guardarReservaAula(@ModelAttribute("reserva_aula") ReservaAula reservaAula)
+    public String guardarReservaAula(@ModelAttribute("reserva_aula") ReservaAula reservaAula, Model model) throws ApplicationError
     {
+        List<AulaInformatica> aulasInformatica = aulaInformaticaRepository.findAll();
+        List<ReservaAula> reservasAula = reservaAulaRepository.findAll();
+        if(reservasAula.size() != 0)
+        {
+            for(AulaInformatica aulaInformatica : aulasInformatica)
+            {
+                if(aulaInformatica.getId() == reservaAula.getIdAula().getId())
+                {
+                    for(ReservaAula reservaAulaIt : reservasAula)
+                    {
+                        if(reservaAula.getFecha().equals(reservaAulaIt.getFecha()))
+                        {
+                            throw new RuntimeException("No se puede guardar la reserva. La fecha "+reservaAula.getFecha()+" esta ocupada por otro profesor");
+                        }
+                    }
+                }
+            }
+            reservaAulaRepository.save(reservaAula); 
+        }
+        else
+        {
         reservaAulaRepository.save(reservaAula);
+        }
 
         return "redirect:/reservas/";
     }

@@ -1,6 +1,9 @@
 # Server of the application
 server:
   port: 8081
+  error:
+    whitelabel:
+      enabled: false
 # Spring configuration to connect the database
 spring:
   jpa.hibernate.ddl-auto: create
