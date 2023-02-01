@@ -9,10 +9,7 @@ package es.iesjandula.spring_tr18.controller;
 
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,10 +20,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.iesjandula.spring_tr18.errors.ApplicationError;
 import es.iesjandula.spring_tr18.models.AulaInformatica;
+import es.iesjandula.spring_tr18.models.CarritoPCs;
+import es.iesjandula.spring_tr18.models.CarritoTablets;
 import es.iesjandula.spring_tr18.models.ReservaAula;
 import es.iesjandula.spring_tr18.models.ReservaCarritoPCs;
 import es.iesjandula.spring_tr18.models.ReservaCarritoTablets;
 import es.iesjandula.spring_tr18.repositories.IAulaInformaticaRepository;
+import es.iesjandula.spring_tr18.repositories.ICarritoPCsRepository;
+import es.iesjandula.spring_tr18.repositories.ICarritoTabletsRepository;
 import es.iesjandula.spring_tr18.repositories.IReservaAulaRepository;
 import es.iesjandula.spring_tr18.repositories.IReservaCarritoPCsRepository;
 import es.iesjandula.spring_tr18.repositories.IReservaCarritoTabletsRepository;
@@ -39,9 +40,12 @@ import es.iesjandula.spring_tr18.repositories.IReservaCarritoTabletsRepository;
 @RequestMapping(value = "/reservas")
 public class WebController 
 {
-    private static final Logger LOGGER = LogManager.getLogger();
     @Autowired
     public IAulaInformaticaRepository aulaInformaticaRepository;
+    @Autowired
+    public ICarritoPCsRepository carritoPCsRepository;
+    @Autowired
+    public ICarritoTabletsRepository carritoTabletsRepository;
     /**
      * Repository of the table "Reserve trolley tablet"
      */
@@ -119,7 +123,7 @@ public class WebController
      * @return redirection of the main page
      */
     @RequestMapping(value = "/guardar_reserva_aula", method = RequestMethod.POST)
-    public String guardarReservaAula(@ModelAttribute("reserva_aula") ReservaAula reservaAula, Model model) throws ApplicationError
+    public String guardarReservaAula(@ModelAttribute("reserva_aula") ReservaAula reservaAula) throws ApplicationError
     {
         List<AulaInformatica> aulasInformatica = aulaInformaticaRepository.findAll();
         List<ReservaAula> reservasAula = reservaAulaRepository.findAll();
@@ -142,7 +146,7 @@ public class WebController
         }
         else
         {
-        reservaAulaRepository.save(reservaAula);
+            reservaAulaRepository.save(reservaAula);
         }
 
         return "redirect:/reservas/";
@@ -155,7 +159,31 @@ public class WebController
     @RequestMapping(value = "/guardar_reserva_carrito_pcs", method = RequestMethod.POST)
     public String guardarReservaCarritoPCs(@ModelAttribute("reserva_carrito_pcs") ReservaCarritoPCs reservaCarritoPCs)
     {
-        reservaCarritoPCsRepository.save(reservaCarritoPCs);
+        List<CarritoPCs> carritosPCs = carritoPCsRepository.findAll();
+        List<ReservaCarritoPCs> reservasCarritosPCs = reservaCarritoPCsRepository.findAll();
+        if(reservasCarritosPCs.size() != 0)
+        {
+            for(CarritoPCs carritoPCs : carritosPCs)
+            {
+                if(carritoPCs.getId() == reservaCarritoPCs.getIdCarritoPcs().getId())
+                {
+                    for(ReservaCarritoPCs reservaCarritoPCsIt : reservasCarritosPCs)
+                    {
+                        if(reservaCarritoPCsIt.getDate().equals(reservaCarritoPCs.getDate()))
+                        {
+                            throw new RuntimeException("No se puede guardar la reserva. La fecha "+reservaCarritoPCs.getDate()+" esta ocupada por otro profesor");
+                        }
+                    }
+                }
+            }
+            reservaCarritoPCsRepository.save(reservaCarritoPCs);
+        }
+        else
+        {
+            reservaCarritoPCsRepository.save(reservaCarritoPCs);
+        }
+
+        
 
         return "redirect:/reservas/";
     }
@@ -167,7 +195,30 @@ public class WebController
     @RequestMapping(value = "/guardar_reserva_carrito_tablets", method = RequestMethod.POST)
     public String guardarReservaCarritoTablets(@ModelAttribute("reserva_carrito_tablets") ReservaCarritoTablets reservaCarritoTablets)
     {
-        reservaCarritoTabletsRepository.save(reservaCarritoTablets);
+        List<CarritoTablets> carritosTablets = carritoTabletsRepository.findAll();
+        List<ReservaCarritoTablets> reservasCarritoTablets = reservaCarritoTabletsRepository.findAll();
+        if(reservasCarritoTablets.size() != 0)
+        {
+            for(CarritoTablets carritoTablets : carritosTablets)
+            {
+                if(carritoTablets.getId() == reservaCarritoTablets.getIdCarritoTablets().getId())
+                {
+                    for(ReservaCarritoTablets reservaCarritoTabletsIt : reservasCarritoTablets)
+                    {
+                        if(reservaCarritoTabletsIt.getDate().equals(reservaCarritoTablets.getDate()))
+                        {
+                            throw new RuntimeException("No se puede guardar la reserva. La fecha "+reservaCarritoTablets.getDate()+" esta ocupada por otro profesor");
+                        }
+                    }
+                }
+            }
+            reservaCarritoTabletsRepository.save(reservaCarritoTablets);
+        }
+        else
+        {
+            reservaCarritoTabletsRepository.save(reservaCarritoTablets);
+        }
+
 
         return "redirect:/reservas/";
     }
