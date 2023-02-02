@@ -94,27 +94,27 @@ public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAula
 	public void parsearFicheroProfesor(Scanner scanner) throws ApplicationError 
 	{
 		try 
-        {
-            scanner.nextLine();
+		{
+		    scanner.nextLine();
 
-            while(scanner.hasNextLine())
-            {
-                String lineaDelFichero = scanner.nextLine();
+		    while(scanner.hasNextLine())
+		    {
+			String lineaDelFichero = scanner.nextLine();
 
-                String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
-                
-                Profesor profesor = new Profesor();
-                profesor.setNombre(lineaDelFicheroTroceada[0]);
-                profesor.setApellidos(lineaDelFicheroTroceada[1]);
+			String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
 
-                this.profesorRepository.saveAndFlush(profesor);
-            }
-        } 
-        catch (Exception exception) 
-        {
-            ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_CSV_FILE, exception);
-            LOGGER.error(applicationError);
-        }
+			Profesor profesor = new Profesor();
+			profesor.setNombre(lineaDelFicheroTroceada[0]);
+			profesor.setApellidos(lineaDelFicheroTroceada[1]);
+
+			this.profesorRepository.saveAndFlush(profesor);
+		    }
+		} 
+		catch (Exception exception) 
+		{
+		    ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_CSV_FILE, exception);
+		    LOGGER.error(applicationError);
+		}
 		
 	}
 
@@ -129,7 +129,7 @@ public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAula
 			{
 				String lineaDelFichero = scanner.nextLine();
 
-                String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
+                		String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
 
 				AulaInformatica aulaInformatica = new AulaInformatica();
 				aulaInformatica.setNumeroAula(Integer.valueOf(lineaDelFicheroTroceada[0]));
@@ -141,7 +141,7 @@ public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAula
 		catch (Exception exception) 
 		{
 			ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_CSV_FILE, exception);
-            LOGGER.error(applicationError);
+            		LOGGER.error(applicationError);
 		}
 		
 	}
@@ -150,28 +150,28 @@ public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAula
 	public void parsearFicheroCarritoPCs(Scanner scanner) throws ApplicationError 
 	{
 		try 
-        {
-            scanner.nextLine();
+		{
+		    scanner.nextLine();
 
-            while(scanner.hasNextLine())
-            {
-                String lineaDelFichero = scanner.nextLine();
+		    while(scanner.hasNextLine())
+		    {
+			String lineaDelFichero = scanner.nextLine();
 
-                String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
-                
-                CarritoPCs carritoPCs = new CarritoPCs();
-				carritoPCs.setNumeroPcs(Integer.valueOf(lineaDelFicheroTroceada[0]));
-				carritoPCs.setPlanta(Integer.valueOf(lineaDelFicheroTroceada[1]));
-				carritoPCs.setSistemaOperativo(lineaDelFicheroTroceada[2]);
+			String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
 
-				this.carritoPCsRepository.saveAndFlush(carritoPCs);
-            }
-        } 
-        catch (Exception exception) 
-        {
-            ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_CSV_FILE, exception);
-            LOGGER.error(applicationError);
-        }
+			CarritoPCs carritoPCs = new CarritoPCs();
+			carritoPCs.setNumeroPcs(Integer.valueOf(lineaDelFicheroTroceada[0]));
+			carritoPCs.setPlanta(Integer.valueOf(lineaDelFicheroTroceada[1]));
+			carritoPCs.setSistemaOperativo(lineaDelFicheroTroceada[2]);
+
+			this.carritoPCsRepository.saveAndFlush(carritoPCs);
+		    }
+		} 
+		catch (Exception exception) 
+		{
+		    ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_CSV_FILE, exception);
+		    LOGGER.error(applicationError);
+		}
 		
 	}
 
@@ -179,27 +179,27 @@ public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAula
 	public void parsearFicheroCarritoTablets(Scanner scanner) throws ApplicationError 
 	{
 		try 
-        {
-            scanner.nextLine();
+        	{
+            		scanner.nextLine();
 
-            while(scanner.hasNextLine())
-            {
-                String lineaDelFichero = scanner.nextLine();
+            		while(scanner.hasNextLine())
+            		{
+				String lineaDelFichero = scanner.nextLine();
 
-                String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
-                
-                CarritoTablets carritoTablets = new CarritoTablets();
+				String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
+
+				CarritoTablets carritoTablets = new CarritoTablets();
 				carritoTablets.setNumeroTablets(Integer.valueOf(lineaDelFicheroTroceada[0]));
 				carritoTablets.setPlanta(Integer.valueOf(lineaDelFicheroTroceada[1]));
 
 				this.carritoTabletsRepository.saveAndFlush(carritoTablets);
-            }
-        } 
-        catch (Exception exception) 
-        {
-            ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_CSV_FILE, exception);
-            LOGGER.error(applicationError);
-        }
+            		}
+        	} 
+        	catch (Exception exception) 
+        	{
+		    ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_CSV_FILE, exception);
+		    LOGGER.error(applicationError);
+        	}
 	}
 	
 }
