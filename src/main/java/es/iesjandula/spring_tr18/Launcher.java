@@ -155,16 +155,16 @@ public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAula
 
 		    while(scanner.hasNextLine())
 		    {
-			String lineaDelFichero = scanner.nextLine();
+				String lineaDelFichero = scanner.nextLine();
 
-			String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
+				String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
 
-			CarritoPCs carritoPCs = new CarritoPCs();
-			carritoPCs.setNumeroPcs(Integer.valueOf(lineaDelFicheroTroceada[0]));
-			carritoPCs.setPlanta(Integer.valueOf(lineaDelFicheroTroceada[1]));
-			carritoPCs.setSistemaOperativo(lineaDelFicheroTroceada[2]);
+				CarritoPCs carritoPCs = new CarritoPCs();
+				carritoPCs.setNumeroPcs(Integer.valueOf(lineaDelFicheroTroceada[0]));
+				carritoPCs.setPlanta(Integer.valueOf(lineaDelFicheroTroceada[1]));
+				carritoPCs.setSistemaOperativo(lineaDelFicheroTroceada[2]);
 
-			this.carritoPCsRepository.saveAndFlush(carritoPCs);
+				this.carritoPCsRepository.saveAndFlush(carritoPCs);
 		    }
 		} 
 		catch (Exception exception) 
