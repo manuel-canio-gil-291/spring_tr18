@@ -99,15 +99,15 @@ public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAula
 
 		    while(scanner.hasNextLine())
 		    {
-			String lineaDelFichero = scanner.nextLine();
+				String lineaDelFichero = scanner.nextLine();
 
-			String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
+				String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
 
-			Profesor profesor = new Profesor();
-			profesor.setNombre(lineaDelFicheroTroceada[0]);
-			profesor.setApellidos(lineaDelFicheroTroceada[1]);
+				Profesor profesor = new Profesor();
+				profesor.setNombre(lineaDelFicheroTroceada[0]);
+				profesor.setApellidos(lineaDelFicheroTroceada[1]);
 
-			this.profesorRepository.saveAndFlush(profesor);
+				this.profesorRepository.saveAndFlush(profesor);
 		    }
 		} 
 		catch (Exception exception) 
@@ -129,7 +129,7 @@ public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAula
 			{
 				String lineaDelFichero = scanner.nextLine();
 
-                		String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
+				String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
 
 				AulaInformatica aulaInformatica = new AulaInformatica();
 				aulaInformatica.setNumeroAula(Integer.valueOf(lineaDelFicheroTroceada[0]));
@@ -179,11 +179,11 @@ public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAula
 	public void parsearFicheroCarritoTablets(Scanner scanner) throws ApplicationError 
 	{
 		try 
-        	{
-            		scanner.nextLine();
+		{
+			scanner.nextLine();
 
-            		while(scanner.hasNextLine())
-            		{
+			while(scanner.hasNextLine())
+			{
 				String lineaDelFichero = scanner.nextLine();
 
 				String[] lineaDelFicheroTroceada = lineaDelFichero.split(Constants.DELIMITADOR_CSV);
@@ -193,13 +193,13 @@ public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAula
 				carritoTablets.setPlanta(Integer.valueOf(lineaDelFicheroTroceada[1]));
 
 				this.carritoTabletsRepository.saveAndFlush(carritoTablets);
-            		}
-        	} 
-        	catch (Exception exception) 
-        	{
-		    ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_CSV_FILE, exception);
-		    LOGGER.error(applicationError);
-        	}
+			}
+		} 
+		catch (Exception exception) 
+		{
+			ApplicationError applicationError = new ApplicationError(Constants.E_PARSE_CSV_FILE, exception);
+			LOGGER.error(applicationError);
+		}
 	}
 	
 }
