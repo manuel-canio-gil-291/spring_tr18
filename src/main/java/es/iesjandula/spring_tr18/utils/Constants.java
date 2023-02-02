@@ -1,5 +1,9 @@
 package es.iesjandula.spring_tr18.utils;
-
+/**
+ * This class indicates the constants variables
+ * @author Manuel Canio Gil
+ * @version 1.2.0
+ */
 public final class Constants 
 {
     public static final String E_PARSE_OBJECT_TO_JSON = "Ha ocurrido un error al mostrar el codigo JSON";

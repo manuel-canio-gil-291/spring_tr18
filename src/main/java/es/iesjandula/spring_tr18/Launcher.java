@@ -21,31 +21,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.iesjandula.spring_tr18.controller.AulaInformaticaController;
-import es.iesjandula.spring_tr18.controller.CarritoPCsController;
-import es.iesjandula.spring_tr18.controller.CarritoTabletsController;
-import es.iesjandula.spring_tr18.controller.ErrorPageController;
-import es.iesjandula.spring_tr18.controller.IndexController;
-import es.iesjandula.spring_tr18.controller.JsonRestController;
-import es.iesjandula.spring_tr18.controller.ProfesorController;
-import es.iesjandula.spring_tr18.controller.WebController;
+import es.iesjandula.spring_tr18.controller.*;
 import es.iesjandula.spring_tr18.errors.ApplicationError;
-import es.iesjandula.spring_tr18.interfaces.IParseoAulaInformatica;
-import es.iesjandula.spring_tr18.interfaces.IParseoCarritoPCs;
-import es.iesjandula.spring_tr18.interfaces.IParseoCarritoTablets;
-import es.iesjandula.spring_tr18.interfaces.IParseoProfesor;
-import es.iesjandula.spring_tr18.models.AulaInformatica;
-import es.iesjandula.spring_tr18.models.CarritoPCs;
-import es.iesjandula.spring_tr18.models.CarritoTablets;
-import es.iesjandula.spring_tr18.models.Profesor;
-import es.iesjandula.spring_tr18.repositories.IAulaInformaticaRepository;
-import es.iesjandula.spring_tr18.repositories.ICarritoPCsRepository;
-import es.iesjandula.spring_tr18.repositories.ICarritoTabletsRepository;
-import es.iesjandula.spring_tr18.repositories.IProfesorRepository;
+import es.iesjandula.spring_tr18.interfaces.*;
+import es.iesjandula.spring_tr18.models.*;
+import es.iesjandula.spring_tr18.repositories.*;
 import es.iesjandula.spring_tr18.utils.Constants;
 
 /**
- * This class starts the application
+ * This class starts the application and execute the arguments for parse CSV files
  */
 @SpringBootApplication
 @EnableJpaRepositories
@@ -62,14 +46,28 @@ import es.iesjandula.spring_tr18.utils.Constants;
 })
 public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAulaInformatica, IParseoCarritoPCs, IParseoCarritoTablets
 {
+	/**
+	 * Logger
+	 */
 	private static final Logger LOGGER = LogManager.getLogger();
-
+	/**
+	 * Repository of the table "Teacher"
+	 */
 	@Autowired
 	public IProfesorRepository profesorRepository;
+	/**
+	 * Repository of the table "TIC classroom"
+	 */
 	@Autowired
 	public IAulaInformaticaRepository aulaInformaticaRepository;
+	/**
+	 * Repository of the table "PC trolley"
+	 */
 	@Autowired
 	public ICarritoPCsRepository carritoPCsRepository;
+	/**
+	 * Repository of the table "Tablet trolley"
+	 */
 	@Autowired
 	public ICarritoTabletsRepository carritoTabletsRepository;
 	/**
@@ -80,7 +78,9 @@ public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAula
 	{
 		SpringApplication.run(Launcher.class, args);
 	}
-
+	/**
+	 * This transactional method execute the arguments to parse CSV files
+	 */
 	@Transactional(readOnly = false)
 	public void run(String... args) throws Exception 
 	{
