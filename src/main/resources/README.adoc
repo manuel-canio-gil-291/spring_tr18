@@ -1,4 +1,4 @@
-= ABOUT THE FILES CSV
+= About the files CSV
 
 This directory contains the CSV files that allows save them to the database
 
