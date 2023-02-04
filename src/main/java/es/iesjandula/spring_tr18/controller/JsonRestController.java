@@ -1,3 +1,10 @@
+/**
+ * ------------------------------------------------------
+ * | WARNING!!!                                         |
+ * | This is a stable version of the code application.  |
+ * | Please, don't modify!                              |
+ * ------------------------------------------------------
+ */
 package es.iesjandula.spring_tr18.controller;
 
 import java.util.List;
@@ -16,34 +23,59 @@ import es.iesjandula.spring_tr18.models.*;
 import es.iesjandula.spring_tr18.repositories.*;
 import es.iesjandula.spring_tr18.utils.Constants;
 import es.iesjandula.spring_tr18.utils.JsonUtils;
-
+/**
+ * This is a rest controller which it shows data of the database in JSON code
+ * @author Manuel Canio Gil
+ * @version 1.3.0
+ * @apiNote Those endpoints can be used in the web browser or in an API testing program like Postman
+ */
 @RestController
 @RequestMapping(value = "/json_code", produces = {"application/json"})
 public class JsonRestController 
 {
+    /**
+     * Logger
+     */
     private static final Logger LOGGER = LogManager.getLogger();
-
+    /**
+     * Repository of the table "Teacher"
+     */
     @Autowired
     public IProfesorRepository profesorRepository;
-
+    /**
+     * Repository of the table "TIC classroom"
+     */
     @Autowired
     public IAulaInformaticaRepository aulaInformaticaRepository;
-
+    /**
+     * Repository of the table "PC trolley"
+     */
     @Autowired
     public ICarritoPCsRepository carritoPCsRepository;
-
+    /**
+     * Repository of the table "Tablet trolley"
+     */
     @Autowired
     public ICarritoTabletsRepository carritoTabletsRepository;
-
+    /**
+     * Repository of the table "Classroom reservations"
+     */
     @Autowired
     public IReservaAulaRepository reservaAulaRepository;
-
+    /**
+     * Repository of the table "PC trolley reservations"
+     */
     @Autowired
     public IReservaCarritoPCsRepository reservaCarritoPCsRepository;
-
+    /**
+     * Repository of the table "Tablet trolley reservations"
+     */
     @Autowired
     public IReservaCarritoTabletsRepository reservaCarritoTabletsRepository;
-
+    /**
+     * This endpoint return all teachers data
+     * @return Teachers data in JSON code
+     */
     @RequestMapping(value = "/profesores", method = RequestMethod.GET)
     public ResponseEntity<?> getJsonProfesores()
     {
@@ -63,7 +95,11 @@ public class JsonRestController
             return ResponseEntity.internalServerError().body(applicationError);
         }
     }
-
+    /**
+     * This endpoint return the teacher data passing the id
+     * @param id
+     * @return Teacher data in JSON code
+     */
     @RequestMapping(value = "/profesores/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getJsonProfesor(@PathVariable("id") Long id)
     {
@@ -88,7 +124,10 @@ public class JsonRestController
             return ResponseEntity.internalServerError().body(applicationError);
         }
     }
-
+    /**
+     * This endpoint return all TIC classrooms data
+     * @return TIC classrooms data in JSON code
+     */
     @RequestMapping(value = "/aulas_informatica", method = RequestMethod.GET)
     public ResponseEntity<?> getJsonAulasInformatica()
     {
@@ -108,7 +147,11 @@ public class JsonRestController
             return ResponseEntity.internalServerError().body(applicationError);
         }
     }
-
+    /**
+     * This endpoint return the TIC classroom data passing the id
+     * @param id
+     * @return TIC classroom data in JSON code
+     */
     @RequestMapping(value = "/aulas_informatica/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getJsonAulaInformatica(@PathVariable("id") Long id)
     {
@@ -133,7 +176,10 @@ public class JsonRestController
             return ResponseEntity.internalServerError().body(applicationError);
         }
     }
-
+    /**
+     * This endpoint return all PC trolleys data
+     * @return PC trolleys data in JSON code
+     */
     @RequestMapping(value = "/carritos_pcs", method = RequestMethod.GET)
     public ResponseEntity<?> getJsonCarritosPCs()
     {
@@ -153,7 +199,11 @@ public class JsonRestController
             return ResponseEntity.internalServerError().body(applicationError);
         }
     }
-
+    /**
+     * This endpoint return the PC trolley data passing the id
+     * @param id
+     * @return PC trolley data in JSON code
+     */
     @RequestMapping(value = "/carritos_pcs/{id}")
     public ResponseEntity<?> getJsonCarritoPCs(@PathVariable("id") Long id)
     {
@@ -178,7 +228,10 @@ public class JsonRestController
             return ResponseEntity.internalServerError().body(applicationError);
         }
     }
-
+    /**
+     * This endpoint returns all tablet trolleys data
+     * @return Tablet trolleys data in JSON code
+     */
     @RequestMapping(value = "/carritos_tablets", method = RequestMethod.GET)
     public ResponseEntity<?> getJsonCarritosTablets()
     {
@@ -198,7 +251,11 @@ public class JsonRestController
             return ResponseEntity.internalServerError().body(applicationError);
         }
     }
-
+    /**
+     * This endpoint return the tablet trolley data passing the id
+     * @param id
+     * @return Tablet trolley data in JSON code
+     */
     @RequestMapping(value = "/carritos_tablets/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getJsonCarritoTablets(@PathVariable("id") Long id)
     {
@@ -223,7 +280,10 @@ public class JsonRestController
             return ResponseEntity.internalServerError().body(applicationError);
         }
     }
-
+    /**
+     * This endpoint return all TIC classroom reservations
+     * @return Classroom reservations in JSON code
+     */
     @RequestMapping(value = "/reservas_aulas", method = RequestMethod.GET)
     public ResponseEntity<?> getJsonReservasAulasInformatica()
     {
@@ -243,7 +303,10 @@ public class JsonRestController
             return ResponseEntity.internalServerError().body(applicationError);
         }
     }
-
+    /**
+     * This endpoint return all PC trolleys reservations
+     * @return PC trolleys reservations in JSON code
+     */
     @RequestMapping(value = "/reservas_carritos_pcs", method = RequestMethod.GET)
     public ResponseEntity<?> getJsonReservasCarritosPCs()
     {
@@ -263,7 +326,10 @@ public class JsonRestController
             return ResponseEntity.internalServerError().body(applicationError);
         }
     }
-
+    /**
+     * This endpoint return all tablet trolleys reservations
+     * @return Tablet trolleys reservations in JSON code
+     */
     @RequestMapping(value = "/reservas_carritos_tablets", method = RequestMethod.GET)
     public ResponseEntity<?> getJsonReservasCarritosTablets()
     {

@@ -4,7 +4,7 @@ basePath: /carritos_pcs
 info:
   title: PC trolleys based on Swagger
   description: This document shows the endpoints for add, modify or delete PC trolleys data
-  version: 1.2.0
+  version: 1.3.0
   contact:
     name: Manuel Canio Gil
     url: https://github.com/manuel-canio-gil-291

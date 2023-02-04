@@ -1,3 +1,10 @@
+/**
+ * ------------------------------------------------------
+ * | WARNING!!!                                         |
+ * | This is a stable version of the code application.  |
+ * | Please, don't modify!                              |
+ * ------------------------------------------------------
+ */
 package es.iesjandula.spring_tr18.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -8,10 +15,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
-
+/**
+ * This is a controller which shows the error page that replaces the Whitelabel Error Page
+ * @author Manuel Canio Gil
+ * @version 1.3.0
+ */
 @Controller
 public class ErrorPageController implements ErrorController
 {
+    /**
+     * This endpoint shows the error page and the status code returned by the server
+     * @param request
+     * @param model
+     * @return Error HTML web page
+     */
     @RequestMapping("/error")
     public String handleError(HttpServletRequest request, Model model) 
     {

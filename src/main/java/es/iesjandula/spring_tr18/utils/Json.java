@@ -1,3 +1,10 @@
+/**
+ * ------------------------------------------------------
+ * | WARNING!!!                                         |
+ * | This is a stable version of the code application.  |
+ * | Please, don't modify!                              |
+ * ------------------------------------------------------
+ */
 package es.iesjandula.spring_tr18.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -6,7 +13,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 /**
  * This class is an utility to set the configuration of the JSON
  * @author Manuel Canio Gil
- * @version 1.2.0
+ * @version 1.3.0
  */
 public class Json 
 {

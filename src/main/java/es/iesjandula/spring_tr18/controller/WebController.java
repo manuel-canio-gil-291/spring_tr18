@@ -19,31 +19,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.iesjandula.spring_tr18.errors.ApplicationError;
-import es.iesjandula.spring_tr18.models.AulaInformatica;
-import es.iesjandula.spring_tr18.models.CarritoPCs;
-import es.iesjandula.spring_tr18.models.CarritoTablets;
-import es.iesjandula.spring_tr18.models.ReservaAula;
-import es.iesjandula.spring_tr18.models.ReservaCarritoPCs;
-import es.iesjandula.spring_tr18.models.ReservaCarritoTablets;
-import es.iesjandula.spring_tr18.repositories.IAulaInformaticaRepository;
-import es.iesjandula.spring_tr18.repositories.ICarritoPCsRepository;
-import es.iesjandula.spring_tr18.repositories.ICarritoTabletsRepository;
-import es.iesjandula.spring_tr18.repositories.IReservaAulaRepository;
-import es.iesjandula.spring_tr18.repositories.IReservaCarritoPCsRepository;
-import es.iesjandula.spring_tr18.repositories.IReservaCarritoTabletsRepository;
+import es.iesjandula.spring_tr18.models.*;
+import es.iesjandula.spring_tr18.repositories.*;
 /**
  * This is a controller which you can reserve a classroom, a tablet trolley and/or a PC trolley
  * @author Manuel Canio Gil
- * @version 1.2.0
+ * @version 1.3.0
  */
 @Controller
 @RequestMapping(value = "/reservas")
 public class WebController 
 {
+    /**
+     * Repository of the table "TIC classroom"
+     */
     @Autowired
     public IAulaInformaticaRepository aulaInformaticaRepository;
+    /**
+     * Repository of the table "PC trolley"
+     */
     @Autowired
     public ICarritoPCsRepository carritoPCsRepository;
+    /**
+     * Repository of the table "Tablet trolley"
+     */
     @Autowired
     public ICarritoTabletsRepository carritoTabletsRepository;
     /**

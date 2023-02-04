@@ -22,7 +22,7 @@ import es.iesjandula.spring_tr18.repositories.IProfesorRepository;
 /**
  * This is a controller which you can add, modify or delete the teacher data
  * @author Manuel Canio Gil
- * @version 1.2.0
+ * @version 1.3.0
  */
 @Controller
 @RequestMapping(value = "/profesores")

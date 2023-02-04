@@ -1,3 +1,10 @@
+/**
+ * ------------------------------------------------------
+ * | WARNING!!!                                         |
+ * | This is a stable version of the code application.  |
+ * | Please, don't modify!                              |
+ * ------------------------------------------------------
+ */
 package es.iesjandula.spring_tr18.utils;
 
 import org.apache.logging.log4j.LogManager;
@@ -5,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 /**
  * This class is an utility to convert an object to JSON format
  * @author Manuel Canio Gil
- * @version 1.2.0
+ * @version 1.3.0
  */
 public class JsonUtils 
 {

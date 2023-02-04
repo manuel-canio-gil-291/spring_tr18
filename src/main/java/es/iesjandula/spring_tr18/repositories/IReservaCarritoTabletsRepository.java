@@ -14,7 +14,7 @@ import es.iesjandula.spring_tr18.models.ReservaCarritoTablets;
 /**
  * This class allows execute the orders of database
  * @author Manuel Canio Gil
- * @version 1.2.0
+ * @version 1.3.0
  */
 @Repository
 public interface IReservaCarritoTabletsRepository extends JpaRepository<ReservaCarritoTablets, Long>
