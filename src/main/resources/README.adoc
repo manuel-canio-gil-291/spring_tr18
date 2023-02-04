@@ -1,0 +1,7 @@
+= ABOUT THE FILES CSV
+
+This directory contains the CSV files that allows save them to the database
+
+== Parsing performance
+
+Parsing is only done once the application is started. No more parsing actions are performed.
