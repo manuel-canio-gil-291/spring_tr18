@@ -2,202 +2,87 @@ swagger: '2.0'
 host: localhost:8081
 basePath: /reservas
 info:
-  version: 1.3.0
+  version: 1.3.1
   title: Reservation based on Swagger
-  description: This document shows the endpoints for add, modify or delete a reservation
+  description: This document shows the endpoints for add, modify or delete a reservation in a HTML web page
   contact:
     name: Manuel Canio Gil
     url: https://github.com/manuel-canio-gil-291
 schemes:
 - http
-- https
+produces:
+- text/html
 paths:
   /:
     get:
-      operationId: getReservations
+      operationId: paginaInicioReservas
       responses:
         200:
-          description: Query ok
-        500:
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/Reservation_error'
+          description: Returns the index page that get all the reservations of the classrooms and trolleys
   /formulario_nueva_reserva_aula:
-    parameters:
-      - name: idProfesor
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: idAula
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: fecha
-        in: header
-        required: true
-        type: string
     get:
-      operationId: formNewClassroomReservation
+      operationId: formularioNuevaReservaAula
       responses:
         200:
-          description: Parameters ok
-        500:
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/Reservation_error'
+          description: Returns a form to add a new classroom reservation
   /formulario_nueva_reserva_carrito_pcs:
-    parameters:
-      - name: idProfesor
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: idCarritoPcs
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: ubicacion_prestamo
-        in: header
-        required: false
-        type: string
-      - name: date
-        in: header
-        required: true
-        type: string
     get:
-      operationId: formNewPCTrolleyReservation
+      operationId: formularioNuevaReservaCarritoPCs
       responses:
         200:
-          description: Parameters ok
-        500:
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/Reservation_error'
+          description: Returns a form to add a new PC trolley reservation
   /formulario_nueva_reserva_carrito_tablets:
-    parameters:
-      - name: idProfesor
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: idCarritoTablets
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: ubicacion_prestamo
-        in: header
-        required: false
-        type: string
-      - name: date
-        in: header
-        required: true
-        type: string
     get:
-      operationId: formNewTabletTrolleyReservation
+      operationId: formularioNuevaReservaCarritoTablets
       responses:
         200:
-          description: Parameters ok
-        500:
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/Reservation_error'
+          description: Returns a form to add a new tablet trolley reservation
   /guardar_reserva_aula:
     parameters:
-      - name: idProfesor
-        in: header
+      - name: reserva_aula
+        in: body
         required: true
-        type: integer
-        format: int64
-      - name: idAula
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: fecha
-        in: header
-        required: true
-        type: string
+        schema:
+          $ref: '#/definitions/TIC_classroom_reservation'
     post:
-      operationId: AddNewClassroomReservation
+      operationId: guardarReservaAula
       responses:
         200:
-          description: Classroom reservation added
-        400:
-          description: Bad request
-          schema:
-            $ref: '#/definitions/Reservation_error'
+          description: Classroom reservation added, redirect to the index page
         500:
-          description: Internal server error
+          description: Conflict with the date of the reservation
           schema:
             $ref: '#/definitions/Reservation_error'
   /guardar_reserva_carrito_pcs:
     parameters:
-      - name: idProfesor
-        in: header
+      - name: reserva_carrito_pcs
+        in: body
         required: true
-        type: integer
-        format: int64
-      - name: idCarritoPcs
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: ubicacion_prestamo
-        in: header
-        required: false
-        type: string
-      - name: date
-        in: header
-        required: true
-        type: string
+        schema:
+          $ref: '#/definitions/PC_trolleys_reservation'
     post:
-      operationId: AddNewPCTrolleyReservation
+      operationId: guardarReservaCarritoPCs
       responses:
         200:
-          description: PC trolley reservation added
-        400:
-          description: Bad request
-          schema:
-            $ref: '#/definitions/Reservation_error'
+          description: PC trolley reservation added, redirect to the index page
         500:
-          description: Internal server error
+          description: Conflict with the date of the reservation
           schema:
             $ref: '#/definitions/Reservation_error'
   /guardar_reserva_carrito_tablets:
     parameters:
-      - name: idProfesor
-        in: header
+      - name: reserva_carrito_tablets
+        in: body
         required: true
-        type: integer
-        format: int64
-      - name: idCarritoPcs
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: ubicacion_prestamo
-        in: header
-        required: false
-        type: string
-      - name: date
-        in: header
-        required: true
-        type: string
+        schema:
+          $ref: '#/definitions/Tablet_trolleys_reservation'
     post:
-      operationId: AddNewTabletTrolleyReservation
+      operationId: guardarReservaCarritoTablets
       responses:
         200:
-          description: Tablet trolley reservation added
-        400:
-          description: Bad request
-          schema:
-            $ref: '#/definitions/Reservation_error'
+          description: Tablet trolley reservation added, redirect to the index page
         500:
-          description: Internal server error
+          description: Conflict with the date of the reservation
           schema:
             $ref: '#/definitions/Reservation_error'
   /formulario_actualizar_reserva_aula/{id}:
@@ -207,27 +92,13 @@ paths:
         required: true
         type: integer
         format: int64
-      - name: idProfesor
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: idAula
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: fecha
-        in: header
-        required: true
-        type: string
     get:
-      operationId: formUpdateClassroomReservation
+      operationId: formularioActualizarReservaAula
       responses:
         200:
-          description: Parameters ok
+          description: Returns a form to update the classroom reservation corresponding the ID
         500:
-          description: Internal server error
+          description: Invalid ID value
           schema:
             $ref: '#/definitions/Reservation_error'
   /formulario_actualizar_reserva_carrito_pcs/{id}:
@@ -237,31 +108,13 @@ paths:
         required: true
         type: integer
         format: int64
-      - name: idProfesor
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: idCarritoPcs
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: ubicacion_prestamo
-        in: header
-        required: false
-        type: string
-      - name: date
-        in: header
-        required: true
-        type: string
     get:
-      operationId: formUpdatePCTrolleyReservation
+      operationId: formularioActualizarReservaCarritoPCs
       responses:
         200:
-          description: Parameters ok
+          description: Returns a form to update the PC trolley reservation corresponding the ID
         500:
-          description: Internal server error
+          description: Invalid ID value
           schema:
             $ref: '#/definitions/Reservation_error'
   /formulario_actualizar_reserva_carrito_tablets/{id}:
@@ -271,34 +124,16 @@ paths:
         required: true
         type: integer
         format: int64
-      - name: idProfesor
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: idCarritoTablets
-        in: header
-        required: true
-        type: integer
-        format: int64
-      - name: ubicacion_prestamo
-        in: header
-        required: false
-        type: string
-      - name: date
-        in: header
-        required: true
-        type: string
     get:
-      operationId: formUpdateTabletTrolleyReservation
+      operationId: formularioActualizarReservaCarritoTablets
       responses:
         200:
-          description: Parameters ok
+          description: Returns a form to update the tablet trolley reservation corresponding the ID
         500:
-          description: Internal server error
+          description: Invalid ID value
           schema:
             $ref: '#/definitions/Reservation_error'
-  /reservas/actualizar_reserva_aula/{id}:
+  /actualizar_reserva_aula/{id}:
     parameters:
       - name: id
         in: path
@@ -320,18 +155,10 @@ paths:
         required: true
         type: string
     post:
-      operationId: updateClassroomReservation
+      operationId: actualizarReservaAula
       responses:
         200:
-          description: Classroom reservation updated
-        400:
-          description: Bad request
-          schema:
-            $ref: '#/definitions/Reservation_error'
-        500:
-          description: Internal server errror
-          schema:
-            $ref: '#/definitions/Reservation_error'
+          description: Classroom reservation updated, redirect to the index page
   /actualizar_reserva_carrito_pcs/{id}:
     parameters:
       - name: id
@@ -358,18 +185,10 @@ paths:
         required: true
         type: string
     post:
-      operationId: updatePCTrolleyReservation
+      operationId: actualizarReservaCarritoPCs
       responses:
         200:
-          description: PC trolley reservation updated
-        400:
-          description: Bad request
-          schema:
-            $ref: '#/definitions/Reservation_error'
-        500:
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/Reservation_error'
+          description: PC trolley reservation updated, redirect to the index page
   /actualizar_reserva_carrito_tablets/{id}:
     parameters:
       - name: id
@@ -396,18 +215,10 @@ paths:
         required: true
         type: string
     post:
-      operationId: updateTabletTrolleyReservation
+      operationId: actualizarReservaCarritoTablets
       responses:
         200:
-          description: Tablet trolley reservation updated
-        400:
-          description: Bad request
-          schema:
-            $ref: '#/definitions/Reservation_error'
-        500:
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/Reservation_error'
+          description: Tablet trolley reservation updated, redirect to the index page
   /anular_reserva_aula/{id}:
     parameters:
       - name: id
@@ -416,12 +227,12 @@ paths:
         type: integer
         format: int64
     get:
-      operationId: deleteClassroomReservation
+      operationId: anularReservaAula
       responses:
         200:
-          description: Classroom reservation deleted
+          description: Classroom reservation deleted, redirect to the index page
         500:
-          description: Internal server error
+          description: Invalid ID value
           schema:
             $ref: '#/definitions/Reservation_error'
   /anular_reserva_carrito_pcs/{id}:
@@ -432,12 +243,12 @@ paths:
         type: integer
         format: int64
     get:
-      operationId: deletePCTrolleyReservation
+      operationId: anularReservaCarritoPCs
       responses:
         200:
-          description: PC trolley reservation deleted
+          description: PC trolley reservation deleted, redirect to the index page
         500:
-          description: Internal server error
+          description: Invalid ID value
           schema:
             $ref: '#/definitions/Reservation_error'
   /anular_reserva_carrito_tablets/{id}:
@@ -448,12 +259,12 @@ paths:
         type: integer
         format: int64
     get:
-      operationId: deleteTabletTrolleyReservation
+      operationId: anularReservaCarritoTablets
       responses:
         200:
-          description: Tablet trolley reservation deleted
+          description: Tablet trolley reservation deleted, redirect to the index page
         500:
-          description: Internal server error
+          description: Invalid ID value
           schema:
             $ref: '#/definitions/Reservation_error'
 
@@ -516,9 +327,6 @@ definitions:
         type: string
         description: "The date of the reservation"
   Reservation_error:
-    properties: 
-      code:
-        type: integer
-        format: int32
+    properties:
       message:
         type: string

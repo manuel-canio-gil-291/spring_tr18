@@ -3,44 +3,28 @@ host: localhost:8081
 basePath: /profesores
 info:
   title: Teachers based on Swagger
-  description: This document shows the endpoints for add, modify or delete teachers data
-  version: 1.3.0
+  description: This document shows the endpoints for add, modify or delete teachers data in a HTML web page
+  version: 1.3.1
   contact:
     name: Manuel Canio Gil
     url: https://github.com/manuel-canio-gil-291
 schemes:
 - http
-- https
+produces:
+- text/html
 paths:
   /:
     get:
-      operationId: listTeachers
+      operationId: paginaInicio
       responses:
         200:
-          description: Query ok
-        500:
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/Teacher_error'
+          description: Returns the index page that get the teachers data list
   /ver_formulario_nuevo_profesor:
     get:
-      parameters:
-        - name: nombre
-          in: header
-          required: true
-          type: string
-        - name: apellidos
-          in: header
-          required: true
-          type: string
-      operationId: formNewTeacher
+      operationId: formularioNuevoProfesor
       responses:
         200:
-          description: Parameters ok
-        500:
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/Teacher_error'
+          description: Returns a form to add new teacher data
   /ver_formulario_actualizar_profesor/{id}:
     get:
       parameters:
@@ -49,45 +33,26 @@ paths:
           required: true
           type: integer
           format: int64
-        - name: nombre
-          in: header
-          required: true
-          type: string
-        - name: apellidos
-          in: header
-          required: true
-          type: string
-      operationId: formUpdateTeacher
+      operationId: formularioActualizarProfesor
       responses:
         200:
-          description: Parameters ok
+          description: Returns a form to update the teacher data passing the id
         500:
-          description: Internal server error
+          description: Invalid ID value
           schema:
             $ref: '#/definitions/Teacher_error'
   /guardar_profesor:
     post:
       parameters:
-        - name: nombre
-          in: header
+        - name: profesor
+          in: body
           required: true
-          type: string
-        - name: apellidos
-          in: header
-          required: true
-          type: string
-      operationId: addTeacherData
+          schema:
+            $ref: '#/definitions/Teacher'
+      operationId: guardarDatosProfesor
       responses:
         200:
-          description: Teacher data added successfully
-        400:
-          description: Bad request
-          schema:
-            $ref: '#/definitions/Teacher_error'
-        500:
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/Teacher_error'
+          description: Teacher data added successfully, redirect to the index page
   /actualizar_profesor/{id}:
     post:
       parameters:
@@ -104,18 +69,10 @@ paths:
           in: header
           required: true
           type: string
-      operationId: modifyTeacherData
+      operationId: actualizarDatosProfesor
       responses:
         200:
-          description: Teacher data modified
-        400:
-          description: Bad request
-          schema:
-            $ref: '#/definitions/Teacher_error'
-        500:
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/Teacher_error'
+          description: Teacher data modified, redirect to the index page
   /quitar_profesor/{id}:
     get:
       parameters:
@@ -124,12 +81,12 @@ paths:
           required: true
           type: integer
           format: int64
-      operationId: deleteTeacherData
+      operationId: quitarProfesor
       responses:
         200:
-          description: Teacher data deleted
+          description: Teacher data deleted, redirect to the index page
         500:
-          description: Internal server error
+          description: Invalid ID value
           schema:
             $ref: '#/definitions/Teacher_error'
 
@@ -149,9 +106,6 @@ definitions:
         description: "The surname of the teacher"
   Teacher_error:
     properties: 
-      code:
-        type: integer
-        format: int32
       message:
         type: string
   

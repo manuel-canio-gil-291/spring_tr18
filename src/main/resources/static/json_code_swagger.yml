@@ -1,0 +1,276 @@
+swagger: '2.0'
+host: localhost:8081
+basePath: /json_code
+info:
+  title: JSON Rest Controller
+  description: This document shows the endpoints of the JSON Rest Controller
+  version: 1.3.1
+  contact:
+    name: Manuel Canio Gil
+    url: https://github.com/manuel-canio-gil-291
+schemes:
+- http
+produces:
+- application/json
+paths:
+  /profesores:
+    get:
+      operationId: getJsonProfesores
+      responses:
+        200:
+          description: Returns an array with the teachers data
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Teacher'
+  /profesores/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      operationId: getJsonProfesor
+      responses:
+        200:
+          description: Returns an array with the teacher data
+          schema:
+            $ref: '#/definitions/Teacher'
+        400:
+          description: Teacher ID not found
+          schema:
+            $ref: '#/definitions/JSONError'
+  /aulas_informatica:
+    get:
+      operationId: getJsonAulasInformatica
+      responses:
+        200:
+          description: Returns an array with the TIC classrooms data
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TIC_classroom'
+  /aulas_informatica/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      operationId: getJsonAulaInformatica
+      responses:
+        200:
+          description: Returns an array with the TIC classroom data
+          schema:
+            $ref: '#/definitions/TIC_classroom'
+        400:
+          description: TIC classroom ID not found
+          schema:
+            $ref: '#/definitions/JSONError'
+  /carritos_pcs:
+    get:
+      operationId: getJsonCarritosPCs
+      responses:
+        200:
+          description: Returns an array with the PC trolleys data
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Carrito_PC'
+  /carritos_pcs/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      operationId: getJsonCarritoPCs
+      responses:
+        200:
+          description: Returns an array with the PC trolley data
+          schema:
+            $ref: '#/definitions/Carrito_PC'
+        400:
+          description: PC trolley ID not found
+          schema:
+            $ref: '#/definitions/JSONError'
+  /carritos_tablets:
+    get:
+      operationId: getJsonCarritosTablets
+      responses:
+        200:
+          description: Returns an array with the tablet trolleys data
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Carrito_tablet'
+  /carritos_tablets/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      operationId: getJsonCarritoTablets
+      responses:
+        200:
+          description: Returns an array with the tablet trolley data
+          schema:
+            $ref: '#/definitions/Carrito_tablet'
+        400:
+          description: Tablet trolley ID not found
+          schema:
+            $ref: '#/definitions/JSONError'
+  /reservas_aulas:
+    get:
+      operationId: getJsonReservasAulasInformatica
+      responses:
+        200:
+          description: Returns an array with the TIC classroom reservations data
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TIC_classroom_reservation'
+  /reservas_carritos_pcs:
+    get:
+      operationId: getJsonReservasCarritosPCs
+      responses:
+        200:
+          description: Returns an array with the PC trolleys reservations data
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PC_trolleys_reservation'
+  /reservas_carritos_tablets:
+    get:
+      operationId: getJsonReservasCarritosTablets
+      responses:
+        200:
+          description: Returns an array with the tablet trolleys reservations data
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Tablet_trolleys_reservation'
+definitions:
+  Teacher:
+    properties: 
+      id:
+        type: integer
+        format: int64
+        description: "The teacher ID"
+      nombre:
+        type: string
+        description: "The name of the teacher"
+      apellidos:
+        type: string
+        description: "The surname of the teacher"
+  TIC_classroom:
+    properties: 
+      id:
+        type: integer
+        format: int64
+        description: "The TIC classroom ID"
+      numero_aula:
+        type: integer
+        format: int32
+        description: "The classroom number"
+      planta:
+        type: integer
+        format: int32
+        description: "The floor that it's located"
+  Carrito_PC:
+    properties: 
+      id:
+        type: integer
+        format: int64
+        description: "The PC trolley ID"
+      numero_pcs:
+        type: integer
+        format: int32
+        description: "The number of PCs"
+      planta:
+        type: integer
+        format: int32
+        description: "The floor that it's located"
+      sistema_operativo:
+        type: string
+        description: "The operating system installed"
+  Carrito_tablet:
+    properties: 
+      id:
+        type: integer
+        format: int64
+        description: "The Tablet trolley ID"
+      numero_tablets:
+        type: integer
+        format: int32
+        description: "The number of tablets"
+      planta:
+        type: integer
+        format: int32
+        description: "The floor that it's located"
+  TIC_classroom_reservation:
+    properties: 
+      id:
+        type: integer
+        format: int64
+        description: "The reservation ID"
+      idProfesor:
+        type: integer
+        format: int64
+        description: "The teacher ID"
+      idAula:
+        type: integer
+        format: int64
+        description: "The classroom ID"
+      fecha:
+        type: string
+        description: "The date of the reservation"
+  PC_trolleys_reservation:
+    properties: 
+      id:
+        type: integer
+        format: int64
+        description: "The reservation ID"
+      idProfesor:
+        type: integer
+        format: int64
+        description: "The teacher ID"
+      idCarritoPcs:
+        type: integer
+        format: int64
+        description: "The PC trolley ID"
+      ubicacion_prestamo:
+        type: string
+        description: "The loan location"
+      date:
+        type: string
+        description: "The date of the reservation"
+  Tablet_trolleys_reservation:
+    properties: 
+      id:
+        type: integer
+        format: int64
+        description: "The reservation ID"
+      idProfesor:
+        type: integer
+        format: int64
+        description: "The teacher ID"
+      idCarritoTablets:
+        type: integer
+        format: int64
+        description: "The tablet trolley ID"
+      ubicacion_prestamo:
+        type: string
+        description: "The loan location"
+      date:
+        type: string
+        description: "The date of the reservation"
+  JSONError:
+    properties: 
+      message:
+        type: string

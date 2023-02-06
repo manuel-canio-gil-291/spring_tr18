@@ -9,7 +9,7 @@ package es.iesjandula.spring_tr18.utils;
 /**
  * This class indicates the constants variables
  * @author Manuel Canio Gil
- * @version 1.3.0
+ * @version 1.3.1
  */
 public final class Constants 
 {

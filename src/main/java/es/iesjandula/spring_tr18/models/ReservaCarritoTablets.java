@@ -1,3 +1,10 @@
+/**
+ * ------------------------------------------------------
+ * | WARNING!!!                                         |
+ * | This is a stable version of the code application.  |
+ * | Please, don't modify!                              |
+ * ------------------------------------------------------
+ */
 package es.iesjandula.spring_tr18.models;
 
 import jakarta.persistence.CascadeType;
@@ -12,7 +19,7 @@ import jakarta.persistence.Table;
 /**
  * This is the table "Reserve tablet trolley"
  * @author Manuel Canio Gil
- * @version 1.3.0
+ * @version 1.3.1
  */
 @Entity
 @Table(name = "reservas_carritos_tablets")

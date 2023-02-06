@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 /**
  * This is the table "TIC classroom"
  * @author Manuel Canio Gil
- * @version 1.3.0
+ * @version 1.3.1
  */
 @Entity
 @Table(name = "aulas_informatica")

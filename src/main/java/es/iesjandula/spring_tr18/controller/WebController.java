@@ -24,7 +24,7 @@ import es.iesjandula.spring_tr18.repositories.*;
 /**
  * This is a controller which you can reserve a classroom, a tablet trolley and/or a PC trolley
  * @author Manuel Canio Gil
- * @version 1.3.0
+ * @version 1.3.1
  */
 @Controller
 @RequestMapping(value = "/reservas")

@@ -2,47 +2,29 @@ swagger: '2.0'
 host: localhost:8081
 basePath: /aulas_informatica
 info:
-  version: 1.3.0
+  version: 1.3.1
   title: TIC classroom based on Swagger
-  description: This document shows the endpoints for add, modify or delete TIC classrooms data
+  description: This document shows the endpoints for add, modify or delete TIC classrooms data in a HTML web page
   contact:
     name: Manuel Canio Gil
     url: https://github.com/manuel-canio-gil-291
 schemes:
 - http
-- https
+produces:
+- text/html
 paths:
   /:
     get: 
-      operationId: getListTICClassroom
+      operationId: paginaInicio
       responses:
         200:
-          description: Query ok
-        500:
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/TIC_classroom_error'
+          description: Returns the index web page that it gets the TIC clasroom data list
   /ver_formulario_nueva_aula:
     get:
-      parameters:
-        - name: numero_aula
-          in: header
-          required: true
-          type: integer
-          format: int32
-        - name: planta
-          in: header
-          required: true
-          type: integer
-          format: int32
-      operationId: formNewTICClassroom
+      operationId: formularioNuevaAula
       responses:
         200:
-          description: Parameters ok
-        500:
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/TIC_classroom_error'
+          description: Returns a web page to add new TIC classroom data
   /ver_formulario_actualizar_aula/{id}:
     get:
       parameters:
@@ -51,49 +33,26 @@ paths:
           required: true
           type: integer
           format: int64
-        - name: numero_aula
-          in: header
-          required: true
-          type: integer
-          format: int32
-        - name: planta
-          in: header
-          required: true
-          type: integer
-          format: int32
-      operationId: formUpdateTICClassroom
+      operationId: formularioActualizarAula
       responses:
         200:
-          description: Parameters ok
+          description: Returns a web page to update TIC classroom data corresponding the ID
         500:
-          description: Internal server error
+          description: Invalid ID value
           schema:
             $ref: '#/definitions/TIC_classroom_error'
   /guardar_aula:
     post:
       parameters:
-        - name: numero_aula
-          in: header
+        - name: aula_informatica
+          in: body
           required: true
-          type: integer
-          format: int32
-        - name: planta
-          in: header
-          required: true
-          type: integer
-          format: int32
-      operationId: AddTICClassroomData
+          schema:
+            $ref: '#/definitions/TIC_classroom'
+      operationId: guardarDatosAulaInformatica
       responses:
         200:
-          description: TIC Classroom data added successfully
-        400:
-          description: Bad request
-          schema:
-            $ref: '#/definitions/TIC_classroom_error'
-        500:
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/TIC_classroom_error'
+          description: TIC Classroom data added successfully, redirect to the index
   /actualizar_aula/{id}:
     post:
       parameters:
@@ -112,18 +71,10 @@ paths:
           required: true
           type: integer
           format: int32
-      operationId: modifyTICClassroomData
+      operationId: actualizarDatosAulaInformatica
       responses:
         200:
-          description: TIC classroom data modified
-        400:
-          description: Bad request
-          schema:
-            $ref: '#/definitions/TIC_classroom_error'
-        500:
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/TIC_classroom_error'
+          description: TIC classroom data modified, redirect to the index
   /quitar_aula/{id}:
     get:
       parameters:
@@ -135,9 +86,9 @@ paths:
       operationId: deleteTICClassroomData
       responses:
         200:
-          description: TIC classroom data deleted successfully
+          description: TIC classroom data deleted successfully, redirect to the index
         500:
-          description: Internal server error
+          description: Invalid ID value
           schema:
             $ref: '#/definitions/TIC_classroom_error'
 
@@ -159,8 +110,5 @@ definitions:
         description: "The floor that it's located"
   TIC_classroom_error:
     properties: 
-      code:
-        type: integer
-        format: int32
       message:
         type: string

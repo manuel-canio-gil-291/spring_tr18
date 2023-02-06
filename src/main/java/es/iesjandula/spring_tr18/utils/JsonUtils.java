@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 /**
  * This class is an utility to convert an object to JSON format
  * @author Manuel Canio Gil
- * @version 1.3.0
+ * @version 1.3.1
  */
 public class JsonUtils 
 {

@@ -13,7 +13,7 @@ import es.iesjandula.spring_tr18.errors.ApplicationError;
 /**
  * This class interface parse the tablet trolleys data of a CSV file
  * @author Manuel Canio Gil
- * @version 1.3.0
+ * @version 1.3.1
  */
 public interface IParseoCarritoTablets 
 {

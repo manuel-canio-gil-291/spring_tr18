@@ -10,7 +10,7 @@ package es.iesjandula.spring_tr18.errors;
  * This is a class that throws an error message and a throwable exception 
  * while the application is requesting a petition
  * @author Manuel Canio Gil
- * @version 1.3.0
+ * @version 1.3.1
  */
 public class ApplicationError extends Exception 
 {

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * This is a controller that shows the index page
  * @author Manuel Canio Gil
- * @version 1.3.0
+ * @version 1.3.1
  */
 @Controller
 @RequestMapping(value = "/inicio")
