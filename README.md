@@ -56,4 +56,4 @@ Once you have finished reviewing everything, you can now run the application.
 
 ### About this app ###
 
-Developed with Java 19 based on Spring Boot 3.0.1.
+Developed with Java 19 based on Spring Boot 3.0.2.
