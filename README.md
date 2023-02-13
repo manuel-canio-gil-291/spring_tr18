@@ -47,8 +47,9 @@ Once you have finished reviewing everything, you can now run the application.
 - Spring Data with JPA
 - Spring web
 - Spring session core
-- Spring boot with Thymeleaf
+- Spring security
 - Spring boot test
+- Thymeleaf with Spring Security
 - MySQL Connector for Java
 - FasterXML Jackson
 - Log4 Java core
