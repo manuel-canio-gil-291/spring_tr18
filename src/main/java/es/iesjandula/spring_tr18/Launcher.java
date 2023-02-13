@@ -84,7 +84,7 @@ public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAula
 	@Transactional(readOnly = false)
 	public void run(String... args) throws Exception 
 	{
-		LOGGER.info("Insertando los datos de los ficheros CSV a la base a la base de datos");
+		LOGGER.info("Insertando los datos de los ficheros CSV a la base de datos");
 		parsearFicheroProfesor(new Scanner(new File("src/main/resources/profesor.csv")));
 		parsearFicheroAulaInformatica(new Scanner(new File("src/main/resources/aula_informatica.csv")));
 		parsearFicheroCarritoPCs(new Scanner(new File("src/main/resources/carrito_pcs.csv")));
