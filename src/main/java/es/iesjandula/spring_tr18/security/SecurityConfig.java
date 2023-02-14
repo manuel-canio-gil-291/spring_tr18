@@ -6,6 +6,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -14,16 +17,17 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig extends WebSecurityConfiguration
 {
     @Bean
-    public SecurityFilterChain applicationFilterChain(final HttpSecurity http) throws Exception
+    public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception
     {
         http.authorizeHttpRequests()
 
-            .requestMatchers("/inicio/","/inicio/acerca_de","/login").permitAll()
+            .requestMatchers("/inicio/","/inicio/acerca_de","/login","/login-error","/acceso-denegado").permitAll()
             .requestMatchers("/aulas_informatica/","/carritos_pcs/","/carritos_tablets/","/profesores/").hasRole("ADMIN")
             .requestMatchers("/reservas/").hasAnyRole("ADMIN","USER_CARRITO_1PLANTA","USER_CARRITO_2PLANTA")
             .anyRequest().authenticated()
-            .and().formLogin().loginPage("/login").permitAll()
-            .and().logout().permitAll();
+            .and().formLogin().loginPage("/login").failureUrl("/login-error").permitAll()
+            .and().logout().logoutSuccessUrl("/inicio/").permitAll()
+            .and().exceptionHandling().accessDeniedPage("/acceso-denegado");
 
         http.csrf().disable();
 
@@ -31,12 +35,18 @@ public class SecurityConfig extends WebSecurityConfiguration
     }
 
     @Bean
-    public InMemoryUserDetailsManager userDetailsManager()
+    public InMemoryUserDetailsManager userDetailsManager(PasswordEncoder passwordEncoder)
     {
-        return new InMemoryUserDetailsManager(
-            User.withUsername("paco").password("{noop}admin").roles("ADMIN").build(),
-            User.withUsername("rafael").password("{noop}carro1").roles("USER_CARRITO_1PLANTA").build(),
-            User.withUsername("juana").password("{noop}carro2").roles("USER_CARRITO_2PLANTA").build()
-        );
+        UserDetails admin = User.withUsername("paco").password(passwordEncoder.encode("admin")).roles("ADMIN").build();
+        UserDetails carrito1 = User.withUsername("rafael").password(passwordEncoder.encode("carro1")).roles("USER_CARRITO_1PLANTA").build();
+        UserDetails carrito2 = User.withUsername("juana").password(passwordEncoder.encode("carro2")).roles("USER_CARRITO_2PLANTA").build();
+        return new InMemoryUserDetailsManager(admin,carrito1,carrito2);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder()
+    {
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        return encoder;
     }
 }

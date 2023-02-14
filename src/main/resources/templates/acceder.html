@@ -16,6 +16,7 @@
                     <h1 class="modal-title fs-5">Iniciar sesi&oacute;</h1>
                 </div>
                 <div class="modal-body py-0">
+                    <p th:if="${loginError}" class="error" style="color: red;">Usuario o contraseña incorrectos</p>
                     <form th:action="@{/login}" method="post">
                         <div class="col-auto">
                             <label for="username">Usuario</label>  
