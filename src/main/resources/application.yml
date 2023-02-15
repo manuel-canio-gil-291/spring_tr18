@@ -10,7 +10,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/reservas_informatica # <- This database name or whatever you put
     username: root #input your username here
-    password: toor #input your password here
+    password: root #input your password here
     driver-class-name: com.mysql.cj.jdbc.Driver
   hikari:
     connection-timeout: 60000

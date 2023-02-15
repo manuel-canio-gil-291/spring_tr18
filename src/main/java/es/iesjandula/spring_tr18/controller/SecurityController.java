@@ -19,4 +19,10 @@ public class SecurityController
         model.addAttribute("loginError", true);
         return "acceder";
     }
+
+    @RequestMapping("/acceso-denegado")
+    public String accesoDenegado()
+    {
+        return "acceso_denegado";
+    }
 }

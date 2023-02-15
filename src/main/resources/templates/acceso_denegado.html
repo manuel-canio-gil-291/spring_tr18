@@ -1,10 +1,13 @@
+<!-- This is a stable version of the code, 
+    don't modify this HTML web page, otherwise,
+    you can break it completely -->
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesi&oacute;n</title>
+    <title>Acceso denegado</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
@@ -13,28 +16,10 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header border-bottom-0">
-                    <h1 class="modal-title fs-5">Iniciar sesi&oacute;n</h1>
+                    <h1 class="modal-title fs-5">Acceso denegado</h1>
                 </div>
                 <div class="modal-body py-0">
-                    <p th:if="${loginError}" class="error" style="color: red;">Usuario o contraseña incorrectos</p>
-                    <form th:action="@{/login}" method="post">
-                        <div class="col-auto">
-                            <label for="username" class="col-form-label">Usuario</label>  
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" id="username" name="username" class="form-control" autofocus="autofocus"/>
-                        </div>
-                        <div class="col-auto">
-                            <label for="password" class="col-form-label">Contraseña</label>  
-                        </div>
-                        <div class="col-auto">
-                            <input type="password" id="password" name="password" class="form-control"/>
-                        </div>
-                        <br>
-                        <div class="col-auto">
-                            <input type="submit" class="btn btn-secondary" value="Iniciar sesi&oacute;n"/>
-                        </div>
-                    </form>
+                    <p>Lo siento, no tienes permiso para acceder a esta p&aacute;gina</p>
                 </div>
                 <div class="modal-footer flex-column border-top-0">
                     <a th:href="@{/inicio/}" class="text-decoration-none">Volver</a>

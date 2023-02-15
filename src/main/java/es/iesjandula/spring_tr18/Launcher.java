@@ -16,13 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.iesjandula.spring_tr18.controller.*;
 import es.iesjandula.spring_tr18.errors.ApplicationError;
 import es.iesjandula.spring_tr18.interfaces.*;
 import es.iesjandula.spring_tr18.models.*;
@@ -32,19 +28,8 @@ import es.iesjandula.spring_tr18.utils.Constants;
 /**
  * This class starts the application and execute the arguments for parse CSV files
  */
-@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
+@SpringBootApplication
 @EnableJpaRepositories
-@Configuration
-@ComponentScan(basePackageClasses = {
-	WebController.class, 
-	ProfesorController.class,
-	CarritoTabletsController.class,
-	CarritoPCsController.class,
-	AulaInformaticaController.class,
-	IndexController.class,
-	JsonRestController.class,
-	ErrorPageController.class
-})
 public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAulaInformatica, IParseoCarritoPCs, IParseoCarritoTablets
 {
 	/**
