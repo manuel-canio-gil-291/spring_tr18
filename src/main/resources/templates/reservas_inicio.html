@@ -56,6 +56,11 @@
                     </li>
                 </ul>
             </div>
+            <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post" class="d-flex">
+                    <input type="submit" class="btn btn-outline-success" value="Cerrar sesi&oacute;n">
+                </form>
+            </div>
         </div>
     </nav>
     <h1 class="text-center pt-2 pb-2 bg-info text-wrap">Reservas de aulas y carritos</h1>

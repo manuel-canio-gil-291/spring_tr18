@@ -41,6 +41,11 @@
                         <a class="nav-link" th:href="@{/reservas/}">Reservas</a>
                     </li>
                 </ul>
+                <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
+                    <form th:action="@{/logout}" method="post" class="d-flex">
+                        <input type="submit" class="btn btn-outline-success" value="Cerrar sesi&oacute;n">
+                    </form>
+                </div>
             </div>
         </div>
     </nav>
