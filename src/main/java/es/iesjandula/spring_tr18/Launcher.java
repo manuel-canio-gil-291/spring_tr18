@@ -65,7 +65,7 @@ public class Launcher implements CommandLineRunner, IParseoProfesor, IParseoAula
 		SpringApplication.run(Launcher.class, args);
 	}
 	/**
-	 * This transactional method execute the arguments to parse CSV files
+	 * This {@code Transactional} method execute the arguments to parse CSV files
 	 */
 	@Transactional(readOnly = false)
 	public void run(String... args) throws Exception 

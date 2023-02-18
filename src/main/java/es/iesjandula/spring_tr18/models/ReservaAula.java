@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
 /**
  * This is the table "Reserve classroom"
  * @author Manuel Canio Gil
- * @version 1.3.1
+ * @version 1.4.0
  */
 @Entity
 @Table(name = "reservas_aulas")

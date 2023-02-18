@@ -14,7 +14,7 @@ import es.iesjandula.spring_tr18.models.AulaInformatica;
 /**
  * This class allows execute the orders of database
  * @author Manuel Canio Gil
- * @version 1.3.1
+ * @version 1.4.0
  */
 @Repository
 public interface IAulaInformaticaRepository extends JpaRepository<AulaInformatica, Long>

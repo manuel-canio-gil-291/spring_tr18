@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 /**
  * This class is an utility to set the configuration of the JSON
  * @author Manuel Canio Gil
- * @version 1.3.1
+ * @version 1.4.0
  */
 public class Json 
 {

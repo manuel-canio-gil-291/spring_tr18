@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 /**
  * This is a controller which shows the error page that replaces the Whitelabel Error Page
  * @author Manuel Canio Gil
- * @version 1.3.1
+ * @version 1.4.0
  */
 @Controller
 public class ErrorPageController implements ErrorController

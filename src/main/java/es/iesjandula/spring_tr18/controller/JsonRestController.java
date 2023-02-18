@@ -26,8 +26,7 @@ import es.iesjandula.spring_tr18.utils.JsonUtils;
 /**
  * This is a rest controller which it shows data of the database in JSON code
  * @author Manuel Canio Gil
- * @version 1.3.1
- * @apiNote Those endpoints can be used in the web browser or in an API testing program like Postman
+ * @version 1.4.0
  */
 @RestController
 @RequestMapping(value = "/json_code", produces = {"application/json"})

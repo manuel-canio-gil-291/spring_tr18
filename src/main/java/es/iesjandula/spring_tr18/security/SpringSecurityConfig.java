@@ -1,3 +1,10 @@
+/**
+ * ------------------------------------------------------
+ * | WARNING!!!                                         |
+ * | This is a stable version of the code application.  |
+ * | Please, don't modify!                              |
+ * ------------------------------------------------------
+ */
 package es.iesjandula.spring_tr18.security;
 
 import org.springframework.context.annotation.Bean;
@@ -8,11 +15,23 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
+/**
+ * This class is a security configuration that allows manage which endpoints and URLs can be
+ * accesible for the public and which can be accesible only a user with an assigned role
+ * @author Manuel Canio Gil
+ * @version 1.4.0
+ */
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig
 {
+    /**
+     * This {@code Bean} method is the {@code SecurityFilterChain} that configure the endpoints for the public access
+     * and the endpoints for the private access with a role identification
+     * @param http
+     * @return The build of the Security Filter Chain with authorization of the HTTP requests
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception
     {
@@ -33,7 +52,10 @@ public class SpringSecurityConfig
 
         return http.build();
     }
-
+    /**
+     * This {@code Bean} method stores the user data for the identification and log in to access the private pages
+     * @return the user details with username and password
+     */
     @Bean
     public InMemoryUserDetailsManager userDetailsManager()
     {

@@ -22,7 +22,7 @@ import es.iesjandula.spring_tr18.repositories.ICarritoTabletsRepository;
 /**
  * This is a controller which you can add, modify or delete the tablet trolley in the table
  * @author Manuel Canio Gil
- * @version 1.3.1
+ * @version 1.4.0
  */
 @Controller
 @RequestMapping(value = "/carritos_tablets")
