@@ -20,7 +20,9 @@ public class SpringSecurityConfig
 
             .requestMatchers("/inicio/","/inicio/acerca_de","/login","/login-error","/acceso-denegado","/css/**").permitAll()
             .requestMatchers("/aulas_informatica/","/carritos_pcs/","/carritos_tablets/","/profesores/").hasRole("ADMIN")
-            .requestMatchers("/reservas/").hasAnyRole("ADMIN","USER_CARRITO_1PLANTA","USER_CARRITO_2PLANTA")
+            .requestMatchers("/reservas/","/reservas/formulario_nueva_reserva_aula","/reservas/formulario_actualizar_reserva_aula/{id}","/reservas/anular_reserva_aula/{id}").hasAnyRole("ADMIN","USER_CARRITO_PC","USER_CARRITO_TABLET")
+            .requestMatchers("/reservas/formulario_nueva_reserva_carrito_pcs","/reservas/formulario_actualizar_reserva_carrito_pcs/{id}","/reservas/anular_reserva_carrito_pcs/{id}").hasAnyRole("ADMIN","USER_CARRITO_PC")
+            .requestMatchers("/reservas/formulario_nueva_reserva_carrito_tablets","/reservas/formulario_actualizar_reserva_carrito_tablets/{id}","/reservas/anular_reserva_carrito_tablets/{id}").hasAnyRole("ADMIN","USER_CARRITO_TABLET")
             .anyRequest().authenticated()
             .and().formLogin().loginPage("/login").failureUrl("/login-error").permitAll()
             .and().logout().logoutSuccessUrl("/inicio/").permitAll()
@@ -36,8 +38,8 @@ public class SpringSecurityConfig
     public InMemoryUserDetailsManager userDetailsManager()
     {
         UserDetails admin = User.withUsername("paco").password("{noop}admin").roles("ADMIN").build();
-        UserDetails carrito1 = User.withUsername("rafael").password("{noop}carro1").roles("USER_CARRITO_1PLANTA").build();
-        UserDetails carrito2 = User.withUsername("juana").password("{noop}carro2").roles("USER_CARRITO_2PLANTA").build();
-        return new InMemoryUserDetailsManager(admin,carrito1,carrito2);
+        UserDetails carritopc = User.withUsername("rafael").password("{noop}carropc").roles("USER_CARRITO_PC").build();
+        UserDetails carritotablet = User.withUsername("juana").password("{noop}carrotablet").roles("USER_CARRITO_TABLET").build();
+        return new InMemoryUserDetailsManager(admin,carritopc,carritotablet);
     }
 }
